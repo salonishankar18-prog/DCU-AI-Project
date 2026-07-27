@@ -12,12 +12,13 @@ import asyncio
 import json
 import os
 import queue
+import shutil
 import threading
 import uuid
 from pathlib import Path
 
 from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, File, HTTPException, Request, UploadFile
 from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 
@@ -87,70 +88,40 @@ def _resolve_root(root: str | None) -> Path:
 
 
 # ---------------------------------------------------------------------------
-# folder picker
+# folder upload
 # ---------------------------------------------------------------------------
 
-def _looks_like_plan(d: Path) -> bool:
-    try:
-        return (d / "model.svg").is_file()
-    except OSError:
-        return False
+@app.post("/api/upload")
+async def api_upload(files: list[UploadFile] = File(...)):
+    """Stage a folder picked on the user's own computer as a scan root.
 
-
-def _plan_count_shallow(base: Path, cap: int = 4000) -> int:
-    """Plans directly under `base`, without walking the whole tree.
-
-    A CubiCasa dataset is one folder per plan, so counting immediate children is
-    both accurate and instant — os.walk over a home directory is neither.
+    A browser can't hand the server a real filesystem path for an arbitrary
+    local folder, so the UI uploads its files instead (an <input webkitdirectory>
+    preserves each file's relative path) and they land here, under
+    data/uploads/<id>/. `find_plans` walks the whole tree, so it doesn't matter
+    how deep the plan folders sit inside the uploaded structure.
     """
-    n = 1 if _looks_like_plan(base) else 0
-    try:
-        for i, child in enumerate(base.iterdir()):
-            if i > cap:
-                break
-            if child.is_dir() and _looks_like_plan(child):
-                n += 1
-    except (OSError, PermissionError):
-        pass
-    return n
+    if not files:
+        raise HTTPException(400, "no files received")
 
+    dest_root = (ROOT / "data" / "uploads" / uuid.uuid4().hex[:10]).resolve()
+    saved = 0
+    for f in files:
+        parts = [p for p in Path(f.filename or "").as_posix().split("/")
+                 if p not in ("", ".", "..")]
+        if not parts:
+            continue
+        dest = dest_root.joinpath(*parts)
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        with open(dest, "wb") as out:
+            shutil.copyfileobj(f.file, out)
+        saved += 1
+        await f.close()
 
-@app.get("/api/browse")
-async def api_browse(path: str | None = None):
-    """List sub-folders so the UI can offer a picker instead of a typed path.
+    if not saved:
+        raise HTTPException(400, "no valid files in that folder")
 
-    The browser cannot hand a server a real directory path — a file input gives
-    file contents, not locations — so the picking happens here, where the batch
-    will actually read from.
-    """
-    base = Path(path).expanduser() if path else Path.home()
-    try:
-        base = base.resolve()
-    except OSError:
-        raise HTTPException(400, "unreadable path")
-    if not base.is_dir():
-        raise HTTPException(400, f"not a folder: {base}")
-
-    entries = []
-    try:
-        for child in sorted(base.iterdir(), key=lambda c: c.name.lower()):
-            if not child.is_dir() or child.name.startswith("."):
-                continue
-            entries.append({
-                "name": child.name,
-                "path": str(child),
-                "plans": _plan_count_shallow(child),
-            })
-    except PermissionError:
-        raise HTTPException(403, f"no permission to read {base}")
-
-    return {
-        "path": str(base),
-        "parent": str(base.parent) if base.parent != base else None,
-        "home": str(Path.home()),
-        "plans_here": _plan_count_shallow(base),
-        "dirs": entries,
-    }
+    return {"root": str(dest_root), "files": saved}
 
 
 # ---------------------------------------------------------------------------
@@ -404,6 +375,12 @@ async def api_verdict(payload: dict):
     return result
 
 
+# A "Run all determinations" click bills real API usage per plan. Capped so a
+# large dataset can never run away with the configured key's spend — once
+# cumulative cost crosses this, plans still queued are skipped rather than run.
+VERDICT_ALL_BUDGET_USD = 2.00
+
+
 @app.post("/api/verdict/all")
 async def api_verdict_all(payload: dict):
     """Run the determination for every plan in the folder, streaming progress.
@@ -411,7 +388,8 @@ async def api_verdict_all(payload: dict):
     Plans already determined are skipped unless `refresh` is set, so an
     interrupted run resumes instead of re-billing what it already paid for.
     A small worker pool keeps a 100-plan run to minutes without hammering the
-    rate limit.
+    rate limit. Cumulative spend is capped at VERDICT_ALL_BUDGET_USD — once
+    that's crossed, remaining plans are marked skipped_budget rather than run.
     """
     from review.agent import NotConfigured, verdict
 
@@ -437,28 +415,41 @@ async def api_verdict_all(payload: dict):
         total = len(todo)
         lock = threading.Lock()
         done_n = 0
+        spent = {"total": 0.0}
+        budget_hit = threading.Event()
 
         def one(pid):
+            if budget_hit.is_set():
+                return pid, None, None, "skipped_budget"
             try:
-                return pid, verdict(_svg_for(pid), pid), None
-            except NotConfigured as exc:
+                result = verdict(_svg_for(pid), pid)
+            except NotConfigured:
                 raise
-            except Exception as exc:                                # noqa: BLE001
-                return pid, None, f"{type(exc).__name__}: {exc}"
+            except Exception as exc:                               # noqa: BLE001
+                return pid, None, f"{type(exc).__name__}: {exc}", None
+            cost = ((result or {}).get("usage") or {}).get("cost_usd") or 0.0
+            with lock:
+                spent["total"] += cost
+                if spent["total"] >= VERDICT_ALL_BUDGET_USD:
+                    budget_hit.set()
+            return pid, result, None, None
 
         try:
             if not total:
                 q.put({"type": "done", "total": 0, "counts": {},
+                       "spent_usd": 0.0, "budget_cap_usd": VERDICT_ALL_BUDGET_USD,
                        "message": "every plan already has a determination"})
                 return
             with ThreadPoolExecutor(max_workers=workers) as pool:
                 futures = [pool.submit(one, p) for p in todo]
                 for fut in as_completed(futures):
-                    pid, result, err = fut.result()
+                    pid, result, err, skipped = fut.result()
                     with lock:
                         done_n += 1
                         n = done_n
-                    if result is not None:
+                    if skipped == "skipped_budget":
+                        key = "skipped_budget"
+                    elif result is not None:
                         _cache_verdict(pid, result)
                         key = result.get("determination", "?")
                     else:
@@ -466,7 +457,9 @@ async def api_verdict_all(payload: dict):
                     counts[key] = counts.get(key, 0) + 1
                     q.put({"type": "progress", "done": n, "total": total,
                            "plan_id": pid, "status": key, "error": err})
-            q.put({"type": "done", "total": total, "counts": counts})
+            q.put({"type": "done", "total": total, "counts": counts,
+                   "spent_usd": round(spent["total"], 4),
+                   "budget_cap_usd": VERDICT_ALL_BUDGET_USD})
         except NotConfigured as exc:
             q.put({"type": "error", "error": str(exc)})
         except Exception as exc:                                    # noqa: BLE001

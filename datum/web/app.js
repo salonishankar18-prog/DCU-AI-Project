@@ -73,64 +73,44 @@ const STATUS = {
   failed:    ['no', 'Failed'],
 };
 
-/* ---------------- folder picker ----------------
-   The browser can't hand a server a real directory path — a file input gives
-   file contents, not locations — so browsing happens server-side. */
-let pkPath = null;
+/* ---------------- folder upload ----------------
+   The browser can't hand the server a real directory path for an arbitrary local
+   folder, so instead of browsing the server's filesystem, the user's folder is
+   uploaded here (webkitdirectory keeps each file's relative path) and staged
+   under data/uploads/ as the scan root. */
+$('browse').onclick = () => $('folderInput').click();
+$('root').onclick = () => $('folderInput').click();
 
-async function pkLoad(path) {
+$('folderInput').addEventListener('change', async (e) => {
+  const files = [...e.target.files];
+  e.target.value = '';
+  if (files.length) await uploadFolder(files);
+});
+
+async function uploadFolder(files) {
+  banner('err1', null);
+  $('browse').disabled = true;
+  $('barlab').textContent = `Uploading ${files.length} file${files.length === 1 ? '' : 's'}…`;
   try {
-    const r = await api(`/api/browse${path ? `?path=${encodeURIComponent(path)}` : ''}`);
-    pkPath = r.path;
-    $('pkPath').textContent = r.path;
-    $('pkUp').disabled = !r.parent;
-    $('pkUp').dataset.path = r.parent || '';
-    $('pkHome').dataset.path = r.home;
-    $('pkHint').textContent = r.plans_here
-      ? `${r.plans_here} plan folder${r.plans_here === 1 ? '' : 's'} directly in here — "Use this folder" is ready.`
-      : 'No plan folders directly in here. Open a sub-folder, or pick one showing a plan count.';
-    $('pkUse').disabled = false;
-
-    $('pkList').innerHTML = r.dirs.length
-      ? r.dirs.map(d => `<button class="pk-item" data-path="${escapeHtml(d.path)}">
-          <span class="n">${escapeHtml(d.name)}</span>
-          ${d.plans ? `<span class="c">${d.plans} plan${d.plans === 1 ? '' : 's'}</span>` : ''}
-        </button>`).join('')
-      : `<div class="pk-empty">No sub-folders here.</div>`;
-    $('pkList').querySelectorAll('.pk-item').forEach(b => {
-      b.onclick = () => pkLoad(b.dataset.path);
-    });
-    $('pkList').scrollTop = 0;
+    const fd = new FormData();
+    files.forEach(f => fd.append('files', f, f.webkitRelativePath || f.name));
+    const res = await fetch('/api/upload', { method: 'POST', body: fd });
+    if (!res.ok) {
+      let detail = res.statusText;
+      try { detail = (await res.json()).detail || detail; } catch (_) {}
+      throw new Error(detail);
+    }
+    const r = await res.json();
+    $('root').value = r.root;
+    $('barlab').textContent = `Uploaded ${r.files} files`;
+    $('scan').click();
   } catch (e) {
-    $('pkHint').textContent = `Cannot open that folder: ${e.message}`;
-    $('pkList').innerHTML = `<div class="pk-empty">${escapeHtml(e.message)}</div>`;
+    banner('err1', `Upload failed: ${e.message}`);
+    $('barlab').textContent = 'Idle';
+  } finally {
+    $('browse').disabled = false;
   }
 }
-
-function openPicker() {
-  $('picker-modal').hidden = false;
-  const current = $('root').value.trim();
-  pkLoad(current && current.startsWith('/') ? current : null);
-}
-const closePicker = () => { $('picker-modal').hidden = true; };
-
-$('browse').onclick = openPicker;
-$('root').onclick = openPicker;
-$('pkClose').onclick = closePicker;
-$('pkUp').onclick = () => { const p = $('pkUp').dataset.path; if (p) pkLoad(p); };
-$('pkHome').onclick = () => pkLoad($('pkHome').dataset.path);
-$('pkUse').onclick = () => {
-  if (!pkPath) return;
-  $('root').value = pkPath;
-  closePicker();
-  $('scan').click();
-};
-$('picker-modal').addEventListener('click', e => {
-  if (e.target === $('picker-modal')) closePicker();
-});
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && !$('picker-modal').hidden) closePicker();
-});
 
 /* ---------------- Tab 1 — scan ---------------- */
 $('scan').onclick = async () => {
@@ -325,10 +305,11 @@ function refreshPicker() {
     return;
   }
   const VCHIP = {
-    accessible:     ['ok', 'pass'],
-    not_accessible: ['no', 'fail'],
-    undetermined:   ['wr', '?'],
-    excluded:       ['wr', 'excl'],
+    compliant:             ['ok', 'pass'],
+    compliant_with_flags:  ['wr', 'flag'],
+    non_compliant:         ['no', 'fail'],
+    undetermined:          ['wr', '?'],
+    excluded:              ['wr', 'excl'],
   };
   box.innerHTML = usable.map(p => {
     const d = p.verdict && p.verdict.determination;
@@ -373,6 +354,7 @@ async function selectReviewPlan(planId) {
     `${(rec?.rooms || []).length} rooms, scale resolved at <span class="measure-sm">${fmtNum(rec?.px_per_m, 1)}</span> px/m.</p>` +
     `<p>Python measures the geometry; I judge it against Technical Guidance Document M and cite the clause. Ask a question, or use a prompt below.</p>`);
 
+  showReviewPng(planId, rec);
   loadChecks(planId).catch(() => {});
 
   // Replay a stored determination rather than re-billing the API on every click.
@@ -389,6 +371,17 @@ async function loadChecks(planId) {
   } catch (e) {
     state.checks = null;
   }
+}
+
+function showReviewPng(planId, rec) {
+  const box = $('reviewPreview');
+  const outputs = (rec && rec.outputs) || [];
+  if (!outputs.length) {
+    box.innerHTML = `<div class="empty" style="min-height:120px">No annotated output for this plan.</div>`;
+    return;
+  }
+  box.innerHTML = `<img alt="Annotated floor plan ${escapeHtml(planId)}" ` +
+    `src="/api/plans/${encodeURIComponent(planId)}/png?file=${encodeURIComponent(outputs[0].output_png)}">`;
 }
 
 /* ---------------- Tab 2 — chat ---------------- */
@@ -449,9 +442,11 @@ function resetVerdict() {
   $('verdictCall').textContent = 'Not run';
   $('verdictNote').textContent = 'Run the determination to check this plan against TGD M.';
   $('checks').innerHTML = '';
+  paintCost(null);
 }
 
-const DOT = { pass: 'ok', fail: 'no', undetermined: 'wr' };
+const DOT = { pass: 'ok', fail: 'no', flag: 'wr', undetermined: 'wr', informational: 'nu' };
+const TIER_CHIP = { critical: 'no', high: 'wr', medium: 'nu', lower: 'nu' };
 
 $('runVerdict').onclick = async () => {
   if (!state.reviewPlan) { banner('err2', 'Pick a plan first.'); return; }
@@ -477,33 +472,63 @@ $('runVerdict').onclick = async () => {
 
 function paintVerdict(v) {
   const checks = v.checks || [];
-  const fails = checks.filter(c => c.result === 'fail').length;
-  const undet = checks.filter(c => c.result === 'undetermined').length;
+  const hardFails = checks.filter(c => c.result === 'fail');
+  const flagged = checks.filter(c => c.result === 'flag' || c.result === 'undetermined');
+  const passed = checks.filter(c => c.result === 'pass');
+  const info = checks.filter(c => c.result === 'informational');
 
   const map = {
-    accessible:      ['pass', 'Accessible<br>as drawn'],
-    not_accessible:  ['fail', 'Not accessible<br>as drawn'],
-    undetermined:    ['wr',   'Cannot be<br>determined'],
-    excluded:        ['wr',   'Excluded from<br>determination'],
+    compliant:             ['pass', 'Compliant'],
+    compliant_with_flags:  ['wr',   'Compliant with<br>flagged items'],
+    non_compliant:         ['fail', 'Non-compliant'],
+    undetermined:          ['wr',   'Cannot be<br>determined'],
+    excluded:              ['wr',   'Excluded from<br>determination'],
   };
   const [cls, call] = map[v.determination] || ['wr', escapeHtml(v.determination || '—')];
   $('verdictHead').className = 'verdict-h ' + cls;
   $('verdictCall').innerHTML = call;
-  const tally = `${fails} of ${checks.length} checks fail${undet ? `, ${undet} undetermined` : ''}.`;
-  $('verdictNote').textContent = `${tally} ${v.summary || 'Each is traced to a clause in TGD M.'}`;
 
-  $('checks').innerHTML = checks.map(c => {
-    const dot = DOT[c.result] || 'wr';
-    const measured = c.measured_display
-      ? `<span class="measure-sm">${escapeHtml(c.measured_display)}</span> measured · `
-      : (c.result === 'undetermined' ? 'Not determinable from plan geometry · ' : '');
-    const clause = c.clause
-      ? `<span class="ref">TGD M ${escapeHtml(c.clause)}</span>` : '';
+  const tally = `${hardFails.length} hard fail${hardFails.length === 1 ? '' : 's'}, ` +
+    `${flagged.length} flagged.`;
+  const section = v.applicable_section
+    ? `<br><small style="color:var(--ink-3)">Section ${escapeHtml(v.applicable_section)}` +
+      `${v.section_reason ? ' — ' + escapeHtml(v.section_reason) : ''}</small>`
+    : '';
+  $('verdictNote').innerHTML = `${tally} ${escapeHtml(v.summary || 'Each is traced to a clause in TGD M.')}${section}`;
+
+  const row = (c) => {
+    const dot = DOT[c.result] || 'nu';
+    const tier = c.tier ? `<span class="chip ${TIER_CHIP[c.tier] || 'nu'}" style="font-size:8px;margin-left:6px">${escapeHtml(c.tier)}</span>` : '';
+    const measured = c.measured_display ? `<span class="measure-sm">${escapeHtml(c.measured_display)}</span>` : '';
+    const required = c.required_display ? ` vs <span class="measure-sm">${escapeHtml(c.required_display)}</span> required` : '';
+    const clause = c.clause ? `<span class="ref">TGD M ${escapeHtml(c.clause)}</span>` : '';
+    const sep = (measured || required) && clause ? ' · ' : '';
     const note = c.note ? `<small style="margin-top:4px">${escapeHtml(c.note)}</small>` : '';
     return `<div class="check"><span class="dot ${dot}"></span><div class="k">
-      <b>${escapeHtml(c.item || '')}</b>
-      <small>${measured}${clause}</small>${note}</div></div>`;
-  }).join('') || `<div class="check"><div class="k"><small>No checks returned.</small></div></div>`;
+      <b>${escapeHtml(c.item || '')}</b>${tier}
+      <small>${measured}${required}${sep}${clause}</small>${note}</div></div>`;
+  };
+  const group = (title, list) => list.length
+    ? `<div class="sec" style="margin:14px 16px 6px"><span class="eyebrow">${title}</span><span class="dimrule"></span></div>${list.map(row).join('')}`
+    : '';
+
+  $('checks').innerHTML =
+    group('Hard fails', hardFails) +
+    group('Flagged items', flagged) +
+    group('Passed', passed) +
+    group('Informational notes', info) ||
+    `<div class="check"><div class="k"><small>No checks returned.</small></div></div>`;
+
+  paintCost(v.usage, v.cached);
+}
+
+function paintCost(usage, cached) {
+  const el = $('costLine');
+  if (!usage) { el.textContent = 'No analysis run yet.'; return; }
+  const parts = [`${usage.input_tokens.toLocaleString()} in`, `${usage.output_tokens.toLocaleString()} out`];
+  if (usage.cache_read_input_tokens) parts.push(`${usage.cache_read_input_tokens.toLocaleString()} cached`);
+  const prefix = cached ? '(replayed from cache, no new spend) ' : '';
+  el.textContent = `${prefix}${parts.join(' + ')} = ${usage.total_tokens.toLocaleString()} tokens · $${usage.cost_usd.toFixed(4)} (${usage.model})`;
 }
 
 /* ---------------- Tab 2 — run every determination ---------------- */
@@ -537,8 +562,14 @@ $('runAll').onclick = async () => {
         } else if (m.type === 'done') {
           $('allBar').style.width = '100%';
           const c = m.counts || {};
-          $('allLab').textContent = m.message ||
-            `Done — ${Object.entries(c).map(([k, v]) => `${v} ${k}`).join(', ')}`;
+          const skipped = c.skipped_budget || 0;
+          const spend = (m.spent_usd != null)
+            ? ` — $${m.spent_usd.toFixed(2)} spent of the $${(m.budget_cap_usd || 0).toFixed(2)} cap` +
+              (skipped ? `, ${skipped} skipped once the cap was reached` : '')
+            : '';
+          $('allLab').textContent = (m.message ||
+            `Done — ${Object.entries(c).map(([k, v]) => `${v} ${k}`).join(', ')}`) + spend;
+          if (skipped) banner('err2', `Reached the $${(m.budget_cap_usd || 0).toFixed(2)} spend cap for this run — ${skipped} plan${skipped === 1 ? '' : 's'} skipped. Click "Run all determinations" again to continue where it left off.`, 'warn');
           es.close(); resolve();
         } else if (m.type === 'error') {
           banner('err2', `Batch determination failed: ${m.error}`);
