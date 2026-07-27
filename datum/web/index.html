@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Datum — Floor Plan Dimension &amp; Access Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/web/style.css">
+</head>
+<body>
+
+<div class="sheet">
+
+  <!-- TITLE BLOCK RAIL -->
+  <aside class="rail">
+    <div class="rail-mark" aria-hidden="true"></div>
+    <div class="rail-text">Datum &nbsp;·&nbsp; Access Review</div>
+    <div class="rail-rev">REV A</div>
+  </aside>
+
+  <div class="main">
+
+    <!-- STAMP -->
+    <header class="stamp">
+      <h1>Datum <span>/ Access Review</span></h1>
+      <div class="stamp-meta">
+        <div><span class="eyebrow">Dataset</span><b id="metaDataset">cubicasa5k</b></div>
+        <div><span class="eyebrow">Standard</span><b>TGD M — Access &amp; Use</b></div>
+        <div><span class="eyebrow">Model</span><b id="metaModel">claude-sonnet-4-6</b></div>
+      </div>
+    </header>
+
+    <!-- TABS -->
+    <nav class="tabs" role="tablist" aria-label="Workflow stages">
+      <button class="tab" role="tab" id="t1" aria-controls="v1" aria-selected="true">
+        <span class="n">01</span>Extract dimensions
+      </button>
+      <button class="tab" role="tab" id="t2" aria-controls="v2" aria-selected="false">
+        <span class="n">02</span>Access review
+      </button>
+    </nav>
+
+    <div class="panelwrap">
+
+    <!-- ────────────── VIEW 1 ────────────── -->
+    <section class="view" id="v1" role="tabpanel" aria-labelledby="t1">
+
+      <div class="banner" id="err1" hidden></div>
+
+      <div class="sec"><span class="eyebrow">Intake</span><span class="dimrule"></span></div>
+
+      <div class="grid g-intake" style="margin-bottom:22px">
+        <div class="card">
+          <div class="card-h"><span class="eyebrow">Source folder</span></div>
+          <div class="card-b">
+            <label class="f">
+              <span class="eyebrow">Dataset root</span>
+              <div style="display:flex;gap:8px">
+                <input type="text" id="root" value="./data/raw" readonly
+                       style="flex:1;cursor:pointer" title="Click to choose a folder">
+                <button class="btn ghost" id="browse" style="white-space:nowrap">Choose…</button>
+              </div>
+            </label>
+            <p class="note" style="margin-bottom:16px">
+              Each plan folder holds <code>model.svg</code> plus one to three PNG renders.
+              Datum pairs them by folder, reads the scale reference out of the SVG, then
+              writes an annotated copy of every PNG. Originals are never modified.
+            </p>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+              <button class="btn ghost" id="scan">Scan folder</button>
+              <button class="btn" id="run" disabled>Annotate all plans</button>
+              <label class="note" style="display:flex;gap:6px;align-items:center;margin:0">
+                <input type="checkbox" id="resume" checked style="width:auto"> resume
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-h"><span class="eyebrow">Output settings</span></div>
+          <div class="card-b">
+            <label class="f">
+              <span class="eyebrow">Units</span>
+              <div class="seg" id="units" data-value="m">
+                <button aria-pressed="true" data-v="m">Metres</button>
+                <button aria-pressed="false" data-v="ft">Feet</button>
+                <button aria-pressed="false" data-v="both">Both</button>
+              </div>
+            </label>
+            <label class="f">
+              <span class="eyebrow">Annotation style</span>
+              <div class="seg" id="style" data-value="dimension_lines">
+                <button aria-pressed="true" data-v="dimension_lines">Dimension lines</button>
+                <button aria-pressed="false" data-v="corner_label">Corner label</button>
+              </div>
+            </label>
+            <label class="f" style="margin-bottom:0">
+              <span class="eyebrow">Per-room labels</span>
+              <select id="roomLabels">
+                <option value="true">Room name + area</option>
+                <option value="false">Off</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="sec"><span class="eyebrow">Batch</span><span class="dimrule"></span></div>
+
+      <div class="stats" style="margin-bottom:14px">
+        <div class="stat"><span class="eyebrow">Plans found</span><b id="s1">—</b></div>
+        <div class="stat"><span class="eyebrow">PNG renders</span><b id="s2">—</b></div>
+        <div class="stat"><span class="eyebrow">Scale resolved</span><b id="s3">—</b></div>
+        <div class="stat"><span class="eyebrow">Annotated</span><b id="s4">—</b></div>
+      </div>
+
+      <div class="card" style="margin-bottom:22px">
+        <div class="card-b" style="display:flex;align-items:center;gap:16px">
+          <div class="prog" style="flex:1"><i id="bar"></i></div>
+          <span class="mono" id="barlab" style="font-size:11.5px;color:var(--ink-2);white-space:nowrap">Idle</span>
+        </div>
+      </div>
+
+      <div class="sec"><span class="eyebrow">Results</span><span class="dimrule"></span></div>
+
+      <div class="grid g-results">
+        <div class="card">
+          <div class="card-h">
+            <span class="eyebrow">Extracted dimensions</span>
+            <div style="margin-left:auto;display:flex;gap:8px">
+              <button class="btn ghost" style="padding:7px 13px" id="expXlsx">Export Excel</button>
+              <button class="btn ghost" style="padding:7px 13px" id="expCsv">CSV</button>
+              <button class="btn ghost" style="padding:7px 13px" id="expZip">ZIP</button>
+            </div>
+          </div>
+          <div class="tbl-scroll">
+            <table>
+              <thead><tr>
+                <th>Plan ID</th><th>Scale</th><th>Width</th><th>Depth</th><th>Floor area</th><th>Rooms</th><th>Status</th>
+              </tr></thead>
+              <tbody id="rows">
+                <tr><td colspan="7" style="color:var(--ink-3);padding:26px 12px;text-align:center;font-family:var(--body)">Scan a folder to begin.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-h"><span class="eyebrow">Annotated output</span><span class="mono" id="pvid" style="margin-left:auto;font-size:11px;color:var(--ink-3)">—</span></div>
+          <div class="card-b">
+            <div class="preview" id="preview">
+              <div class="empty">Run the batch, then pick a plan to see its annotated PNG.</div>
+            </div>
+            <div id="pvfiles" style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px"></div>
+            <p class="note" style="margin-top:12px">
+              Orange marks every real-world value, on screen and in the exported PNG.
+              Ink black stays structural.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ────────────── VIEW 2 ────────────── -->
+    <section class="view" id="v2" role="tabpanel" aria-labelledby="t2" hidden>
+
+      <div class="banner" id="err2" hidden></div>
+
+      <div class="sec"><span class="eyebrow">Reference</span><span class="dimrule"></span></div>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:22px">
+        <div class="docchip" style="flex:1;min-width:340px">
+          <span class="pulse" id="docPulse"></span>
+          <b style="font-weight:600">Technical Guidance Document M — Access and Use</b>
+          <span class="mono" id="docStat" style="margin-left:auto;color:var(--ink-3);font-size:11px">indexing…</span>
+        </div>
+        <button class="btn" id="runAll">Run all determinations</button>
+        <button class="btn ghost" id="expXlsx2">Export Excel</button>
+      </div>
+
+      <div class="card" id="allWrap" hidden style="margin-bottom:22px">
+        <div class="card-b" style="display:flex;align-items:center;gap:16px">
+          <div class="prog" style="flex:1"><i id="allBar"></i></div>
+          <span class="mono" id="allLab" style="font-size:11.5px;color:var(--ink-2);white-space:nowrap">Idle</span>
+        </div>
+      </div>
+
+      <div class="grid g-chat">
+
+        <!-- plan picker -->
+        <div class="card" style="align-self:start">
+          <div class="card-h"><span class="eyebrow">Plan under review</span></div>
+          <div class="planlist" id="picker">
+            <div style="padding:16px" class="note">No plans yet — run Tab 1.</div>
+          </div>
+        </div>
+
+        <!-- chat -->
+        <div class="card" style="display:flex;flex-direction:column;overflow:hidden">
+          <div class="card-h"><span class="eyebrow">Review conversation</span>
+            <span class="mono" id="who" style="margin-left:auto;font-size:11px;color:var(--ink-3)">—</span>
+          </div>
+          <div class="thread" id="thread"></div>
+          <div class="suggest" id="suggest">
+            <button>Is the hall wide enough for a wheelchair?</button>
+            <button>Check every door clear width</button>
+            <button>Can a 1500 mm turning circle fit in the bathroom?</button>
+            <button>Summarise what fails</button>
+          </div>
+          <div class="composer">
+            <input type="text" id="ask" placeholder="Ask about this plan…" aria-label="Ask about this plan">
+            <button class="btn" id="send">Send</button>
+          </div>
+        </div>
+
+        <!-- verdict -->
+        <div class="verdict" style="align-self:start">
+          <div class="verdict-h" id="verdictHead">
+            <span class="eyebrow">Determination</span>
+            <div class="call" id="verdictCall">Not run</div>
+            <p class="note" style="margin-top:9px" id="verdictNote">Pick a plan, then run the determination.</p>
+          </div>
+          <div id="checks"></div>
+          <div class="card-b" style="border-top:1px solid var(--rule);display:flex;gap:8px;flex-direction:column">
+            <button class="btn" style="width:100%" id="runVerdict">Run determination</button>
+            <button class="btn ghost" style="width:100%" id="showGeom">Show measured geometry</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="geomWrap" hidden style="margin-top:22px">
+        <div class="sec"><span class="eyebrow">Measured geometry — Python, not the model</span><span class="dimrule"></span></div>
+        <div class="grid g-results">
+          <div class="card">
+            <div class="card-h"><span class="eyebrow">Doors</span></div>
+            <div class="geom"><table><thead><tr><th>ID</th><th>Between</th><th>Clear width</th><th>Method</th></tr></thead><tbody id="geomDoors"></tbody></table></div>
+          </div>
+          <div class="card">
+            <div class="card-h"><span class="eyebrow">Rooms — turning circle</span></div>
+            <div class="geom"><table><thead><tr><th>Room</th><th>Free circle Ø</th><th>Min width</th></tr></thead><tbody id="geomRooms"></tbody></table></div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    </div>
+
+    <!-- folder picker -->
+    <div class="modal" id="picker-modal" hidden>
+      <div class="modal-card">
+        <div class="card-h">
+          <span class="eyebrow">Choose dataset folder</span>
+          <button class="btn ghost" id="pkClose" style="margin-left:auto;padding:5px 12px">Close</button>
+        </div>
+        <div class="card-b" style="padding-bottom:10px">
+          <div class="pk-path mono" id="pkPath">—</div>
+          <p class="note" id="pkHint" style="margin-top:8px"></p>
+        </div>
+        <div class="pk-list" id="pkList"></div>
+        <div class="card-b" style="border-top:1px solid var(--rule);display:flex;gap:10px">
+          <button class="btn ghost" id="pkUp">↑ Up</button>
+          <button class="btn ghost" id="pkHome">Home</button>
+          <button class="btn" id="pkUse" style="margin-left:auto">Use this folder</button>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <span>Datum · Rev A · <span id="footState">idle</span></span>
+      <span>Measurements shown in orange throughout</span>
+    </footer>
+  </div>
+</div>
+
+<script src="/web/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+# Secrets — never commit the real one. datum/.env.example is the template.
+datum/.env
+
+# Virtualenv
+datum/.venv/
+__pycache__/
+*.pyc
+
+# Generated output. data/out is rebuilt by a batch run in minutes.
+datum/data/out/
+datum/data/datum_export.zip
+datum/data/tgdm/tgdm_index.json
+
+# The dataset as downloaded is not ours to redistribute — keep the one sample
+# plan the pipeline is tested against, ignore anything else dropped in.
+datum/data/raw/*
+!datum/data/raw/.gitkeep
+!datum/data/raw/sample_plan_0001/
+
+# TGD M is a government publication — let setup place it rather than
+# redistributing it from this repo.
+datum/data/tgdm/TGD-M.pdf
+
+.DS_Store
+datum/data/datum_report.xlsx

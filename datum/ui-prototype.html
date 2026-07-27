@@ -1,0 +1,762 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Datum — Floor Plan Dimension &amp; Access Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   TOKENS
+   Palette: drafting mylar ground, ink linework, survey teal.
+   RULE: --dim (orange) is measurement ink. It is used ONLY on
+   values that describe a real-world distance or area. Never
+   for decoration, never for generic emphasis.
+   ============================================================ */
+:root{
+  --sheet:      #ECEEEA;
+  --panel:      #F7F8F5;
+  --panel-2:    #E3E6E0;
+  --ink:        #14202A;
+  --ink-2:      #5A6970;
+  --ink-3:      #8B979B;
+  --rule:       #C7CDC7;
+  --rule-soft:  #DCE0D9;
+  --dim:        #E0532B;   /* measurement ink */
+  --pass:       #1D6B62;
+  --flag:       #A8323F;
+  --warn:       #9C6B10;
+
+  --display: 'Archivo', system-ui, sans-serif;
+  --body:    'IBM Plex Sans', system-ui, sans-serif;
+  --mono:    'IBM Plex Mono', ui-monospace, monospace;
+
+  --r: 3px;
+  --pad: 22px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--body);
+  color:var(--ink);
+  background:var(--sheet);
+  background-image:
+    linear-gradient(var(--rule-soft) 1px, transparent 1px),
+    linear-gradient(90deg, var(--rule-soft) 1px, transparent 1px);
+  background-size:56px 56px;
+  font-size:14px;
+  line-height:1.5;
+  min-height:100vh;
+}
+
+/* ---------- shared type ---------- */
+.eyebrow{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:10px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--ink-3);
+}
+.mono{font-family:var(--mono)}
+/* measurement ink — the signature rule */
+.measure{font-family:var(--mono);font-weight:600;color:var(--dim);font-variant-numeric:tabular-nums}
+.measure-sm{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--dim);font-variant-numeric:tabular-nums}
+
+/* ============================================================
+   SHEET FRAME + TITLE BLOCK RAIL
+   ============================================================ */
+.sheet{
+  max-width:1360px;
+  margin:0 auto;
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:56px 1fr;
+  background:var(--sheet);
+  border-left:1px solid var(--rule);
+  border-right:1px solid var(--rule);
+}
+.rail{
+  border-right:1px solid var(--rule);
+  background:var(--panel-2);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px 0;
+  position:sticky; top:0; height:100vh;
+}
+.rail-mark{
+  width:22px;height:22px;
+  border:1.5px solid var(--ink);
+  border-radius:50%;
+  position:relative;
+  flex:none;
+}
+.rail-mark::before,.rail-mark::after{
+  content:"";position:absolute;background:var(--ink);
+}
+.rail-mark::before{left:50%;top:-5px;bottom:-5px;width:1.5px;transform:translateX(-50%)}
+.rail-mark::after{top:50%;left:-5px;right:-5px;height:1.5px;transform:translateY(-50%)}
+.rail-text{
+  writing-mode:vertical-rl;
+  font-family:var(--display);
+  font-size:10px;font-weight:700;
+  letter-spacing:.28em;text-transform:uppercase;
+  color:var(--ink-3);
+}
+.rail-rev{
+  font-family:var(--mono);font-size:10px;color:var(--ink-3);
+  writing-mode:vertical-rl;
+}
+
+.main{min-width:0;display:flex;flex-direction:column}
+
+/* ---------- header / stamp ---------- */
+.stamp{
+  display:flex;flex-wrap:wrap;align-items:flex-end;gap:20px;
+  padding:26px var(--pad) 18px;
+  border-bottom:1px solid var(--rule);
+  background:var(--sheet);
+}
+.stamp h1{
+  font-family:var(--display);
+  font-weight:800;
+  font-size:clamp(24px,3.4vw,34px);
+  letter-spacing:-.02em;
+  line-height:1;
+  text-transform:uppercase;
+}
+.stamp h1 span{color:var(--ink-3);font-weight:600}
+.stamp-meta{
+  margin-left:auto;display:flex;gap:26px;flex-wrap:wrap;
+}
+.stamp-meta div{display:flex;flex-direction:column;gap:3px}
+.stamp-meta b{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--ink)}
+
+/* ---------- tabs, indicated by a dimension line ---------- */
+.tabs{
+  display:flex;gap:0;
+  border-bottom:1px solid var(--rule);
+  background:var(--panel-2);
+  padding:0 var(--pad);
+  position:sticky;top:0;z-index:20;
+}
+.tab{
+  appearance:none;background:none;border:0;cursor:pointer;
+  font-family:var(--display);font-weight:700;font-size:11px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);
+  padding:15px 26px 13px;
+  border-right:1px solid var(--rule);
+  position:relative;
+  transition:color .18s ease, background .18s ease;
+}
+.tab:first-child{border-left:1px solid var(--rule)}
+.tab .n{font-family:var(--mono);font-size:10px;margin-right:8px;opacity:.7}
+.tab:hover{color:var(--ink);background:rgba(255,255,255,.5)}
+.tab[aria-selected="true"]{color:var(--ink);background:var(--sheet)}
+/* dimension-line indicator: ticks at both ends */
+.tab[aria-selected="true"]::after{
+  content:"";position:absolute;left:12px;right:12px;bottom:-1px;height:3px;
+  background:
+    linear-gradient(var(--ink),var(--ink)) left  center/1.5px 9px no-repeat,
+    linear-gradient(var(--ink),var(--ink)) right center/1.5px 9px no-repeat,
+    linear-gradient(var(--ink),var(--ink)) center/100% 1.5px no-repeat;
+}
+.tab:focus-visible{outline:2px solid var(--dim);outline-offset:-2px}
+
+.panelwrap{padding:var(--pad);flex:1}
+.view[hidden]{display:none}
+.view{animation:fade .22s ease}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+/* ---------- section header w/ dimension rule ---------- */
+.sec{display:flex;align-items:center;gap:14px;margin:0 0 14px}
+.sec .eyebrow{white-space:nowrap}
+.sec .dimrule{
+  flex:1;height:9px;
+  background:
+    linear-gradient(var(--rule),var(--rule)) left  center/1.5px 9px no-repeat,
+    linear-gradient(var(--rule),var(--rule)) right center/1.5px 9px no-repeat,
+    linear-gradient(var(--rule),var(--rule)) center/100% 1px no-repeat;
+}
+
+/* ---------- cards / grid ---------- */
+.card{
+  background:var(--panel);
+  border:1px solid var(--rule);
+  border-radius:var(--r);
+}
+.card-h{
+  padding:12px 16px;border-bottom:1px solid var(--rule-soft);
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+}
+.card-b{padding:16px}
+
+.grid{display:grid;gap:16px}
+.g-intake{grid-template-columns:1.15fr .85fr}
+.g-results{grid-template-columns:1.35fr .65fr}
+.g-chat{grid-template-columns:250px 1fr 320px}
+@media(max-width:1080px){
+  .g-intake,.g-results,.g-chat{grid-template-columns:1fr}
+}
+
+/* ---------- form controls ---------- */
+label.f{display:block;margin-bottom:16px}
+label.f > span{display:block;margin-bottom:6px}
+input[type=text],select{
+  width:100%;padding:9px 11px;
+  font-family:var(--mono);font-size:12.5px;color:var(--ink);
+  background:#fff;border:1px solid var(--rule);border-radius:var(--r);
+}
+input[type=text]:focus,select:focus{outline:2px solid var(--ink);outline-offset:-1px}
+.seg{display:flex;border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;background:#fff}
+.seg button{
+  flex:1;appearance:none;background:none;border:0;cursor:pointer;
+  padding:8px 6px;font-family:var(--display);font-size:10px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);
+  border-right:1px solid var(--rule);transition:.15s;
+}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--panel)}
+.seg button:hover:not([aria-pressed="true"]){background:var(--panel-2)}
+
+.btn{
+  appearance:none;cursor:pointer;
+  font-family:var(--display);font-weight:700;font-size:11px;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:11px 20px;border-radius:var(--r);
+  border:1px solid var(--ink);background:var(--ink);color:var(--panel);
+  transition:.15s;
+}
+.btn:hover{background:#000}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--panel-2)}
+.btn:focus-visible{outline:2px solid var(--dim);outline-offset:2px}
+
+/* ---------- stat strip ---------- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;background:var(--panel)}
+@media(max-width:680px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{padding:14px 16px;border-right:1px solid var(--rule-soft)}
+.stat:last-child{border-right:0}
+.stat b{display:block;font-family:var(--mono);font-size:22px;font-weight:600;line-height:1.1;margin-top:5px}
+
+/* ---------- progress ---------- */
+.prog{height:6px;background:var(--panel-2);border:1px solid var(--rule);border-radius:2px;overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:var(--ink);transition:width .3s linear}
+
+/* ---------- table ---------- */
+.tbl-scroll{overflow:auto;max-height:340px}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{
+  position:sticky;top:0;background:var(--panel-2);
+  font-family:var(--display);font-size:9.5px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);
+  text-align:left;padding:9px 12px;border-bottom:1px solid var(--rule);white-space:nowrap;
+}
+td{padding:9px 12px;border-bottom:1px solid var(--rule-soft);font-family:var(--mono);font-size:12px;white-space:nowrap}
+tbody tr{cursor:pointer;transition:background .12s}
+tbody tr:hover{background:#fff}
+tbody tr[aria-selected="true"]{background:#fff;box-shadow:inset 2.5px 0 0 var(--ink)}
+
+.chip{
+  display:inline-flex;align-items:center;gap:5px;
+  font-family:var(--display);font-size:9px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 8px;border-radius:2px;border:1px solid currentColor;
+}
+.chip.ok{color:var(--pass)}
+.chip.no{color:var(--flag)}
+.chip.wr{color:var(--warn)}
+.chip.nu{color:var(--ink-3)}
+
+/* ---------- preview ---------- */
+.preview{background:#fff;border:1px solid var(--rule);border-radius:var(--r);padding:10px}
+.preview svg{width:100%;height:auto;display:block}
+
+/* ============================================================
+   TAB 2 — chat + verdict
+   ============================================================ */
+.planlist{display:flex;flex-direction:column;gap:1px;background:var(--rule-soft);max-height:420px;overflow:auto}
+.planitem{
+  appearance:none;border:0;cursor:pointer;text-align:left;
+  background:var(--panel);padding:10px 14px;font-family:var(--mono);font-size:12px;
+  display:flex;justify-content:space-between;gap:8px;align-items:center;transition:.12s;
+}
+.planitem:hover{background:#fff}
+.planitem[aria-pressed="true"]{background:var(--ink);color:var(--panel)}
+.planitem[aria-pressed="true"] .measure-sm{color:#F0A88E}
+
+.thread{
+  height:440px;overflow:auto;padding:18px;
+  display:flex;flex-direction:column;gap:16px;background:var(--panel);
+}
+.msg{max-width:82%;animation:rise .25s ease}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.msg .who{margin-bottom:5px}
+.msg .bub{
+  padding:11px 14px;border-radius:var(--r);font-size:13.5px;line-height:1.55;
+  border:1px solid var(--rule);background:#fff;
+}
+.msg.me{align-self:flex-end}
+.msg.me .bub{background:var(--ink);color:var(--panel);border-color:var(--ink)}
+.msg.me .who{text-align:right}
+.msg .bub p+p{margin-top:9px}
+.msg .bub ul{margin:9px 0 0 18px}
+.msg .bub li{margin-bottom:5px}
+.ref{
+  display:inline-block;font-family:var(--mono);font-size:11px;
+  padding:1px 5px;border:1px solid var(--rule);border-radius:2px;
+  background:var(--panel-2);color:var(--ink-2);
+}
+.typing{display:flex;gap:4px;padding:4px 0}
+.typing i{width:5px;height:5px;border-radius:50%;background:var(--ink-3);animation:bob 1.1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}
+.typing i:nth-child(3){animation-delay:.3s}
+@keyframes bob{0%,60%,100%{opacity:.3}30%{opacity:1}}
+
+.composer{display:flex;gap:10px;padding:14px;border-top:1px solid var(--rule);background:var(--panel-2)}
+.composer input{flex:1;font-family:var(--body);font-size:13.5px}
+.suggest{display:flex;gap:7px;flex-wrap:wrap;padding:0 14px 14px;background:var(--panel-2)}
+.suggest button{
+  appearance:none;cursor:pointer;background:#fff;border:1px solid var(--rule);
+  border-radius:2px;padding:5px 10px;font-size:11.5px;color:var(--ink-2);transition:.12s;
+}
+.suggest button:hover{border-color:var(--ink);color:var(--ink)}
+
+/* verdict */
+.verdict{border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;background:var(--panel)}
+.verdict-h{padding:16px;border-bottom:1px solid var(--rule);background:#fff}
+.verdict-h .call{
+  font-family:var(--display);font-weight:800;font-size:19px;
+  text-transform:uppercase;letter-spacing:-.01em;line-height:1.15;margin-top:6px;
+}
+.verdict-h.fail .call{color:var(--flag)}
+.verdict-h.pass .call{color:var(--pass)}
+.check{padding:11px 16px;border-bottom:1px solid var(--rule-soft);display:flex;gap:11px;align-items:flex-start}
+.check:last-child{border-bottom:0}
+.check .k{flex:1;min-width:0}
+.check .k b{display:block;font-size:12.5px;font-weight:600;margin-bottom:2px}
+.check .k small{color:var(--ink-2);font-size:11.5px;display:block}
+.dot{width:7px;height:7px;border-radius:50%;margin-top:6px;flex:none}
+.dot.ok{background:var(--pass)}.dot.no{background:var(--flag)}.dot.wr{background:var(--warn)}
+
+.docchip{
+  display:flex;align-items:center;gap:9px;padding:9px 12px;
+  border:1px solid var(--rule);border-radius:var(--r);background:#fff;font-size:12px;
+}
+.docchip .pulse{width:6px;height:6px;border-radius:50%;background:var(--pass);flex:none}
+
+.note{font-size:12px;color:var(--ink-2);line-height:1.55}
+.note code{font-family:var(--mono);font-size:11.5px;background:var(--panel-2);padding:1px 4px;border-radius:2px}
+
+footer{
+  padding:16px var(--pad);border-top:1px solid var(--rule);
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:11px;color:var(--ink-3);
+}
+
+@media(max-width:640px){
+  .sheet{grid-template-columns:1fr}
+  .rail{display:none}
+  .tabs{padding:0;overflow-x:auto}
+  .tab{padding:14px 16px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+
+<div class="sheet">
+
+  <!-- TITLE BLOCK RAIL -->
+  <aside class="rail">
+    <div class="rail-mark" aria-hidden="true"></div>
+    <div class="rail-text">Datum &nbsp;·&nbsp; Access Review</div>
+    <div class="rail-rev">REV A</div>
+  </aside>
+
+  <div class="main">
+
+    <!-- STAMP -->
+    <header class="stamp">
+      <h1>Datum <span>/ Access Review</span></h1>
+      <div class="stamp-meta">
+        <div><span class="eyebrow">Dataset</span><b>cubicasa5k</b></div>
+        <div><span class="eyebrow">Standard</span><b>TGD M — Access &amp; Use</b></div>
+        <div><span class="eyebrow">Model</span><b>claude-sonnet-4-6</b></div>
+      </div>
+    </header>
+
+    <!-- TABS -->
+    <nav class="tabs" role="tablist" aria-label="Workflow stages">
+      <button class="tab" role="tab" id="t1" aria-controls="v1" aria-selected="true">
+        <span class="n">01</span>Extract dimensions
+      </button>
+      <button class="tab" role="tab" id="t2" aria-controls="v2" aria-selected="false">
+        <span class="n">02</span>Access review
+      </button>
+    </nav>
+
+    <div class="panelwrap">
+
+    <!-- ══════════════ VIEW 1 ══════════════ -->
+    <section class="view" id="v1" role="tabpanel" aria-labelledby="t1">
+
+      <div class="sec"><span class="eyebrow">Intake</span><span class="dimrule"></span></div>
+
+      <div class="grid g-intake" style="margin-bottom:22px">
+        <div class="card">
+          <div class="card-h"><span class="eyebrow">Source folder</span></div>
+          <div class="card-b">
+            <label class="f">
+              <span class="eyebrow">Dataset root</span>
+              <input type="text" id="root" value="/content/cubicasa5k/high_quality_architectural">
+            </label>
+            <p class="note" style="margin-bottom:16px">
+              Each plan folder holds <code>model.svg</code> plus one to three PNG renders.
+              Datum pairs them by folder, reads the scale reference out of the SVG, then
+              writes an annotated copy of every PNG. Originals are never modified.
+            </p>
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+              <button class="btn ghost" id="scan">Scan folder</button>
+              <button class="btn" id="run" disabled>Annotate all plans</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-h"><span class="eyebrow">Output settings</span></div>
+          <div class="card-b">
+            <label class="f">
+              <span class="eyebrow">Units</span>
+              <div class="seg" id="units">
+                <button aria-pressed="true">Metres</button>
+                <button aria-pressed="false">Feet</button>
+                <button aria-pressed="false">Both</button>
+              </div>
+            </label>
+            <label class="f">
+              <span class="eyebrow">Annotation style</span>
+              <div class="seg" id="style">
+                <button aria-pressed="true">Dimension lines</button>
+                <button aria-pressed="false">Corner label</button>
+              </div>
+            </label>
+            <label class="f" style="margin-bottom:0">
+              <span class="eyebrow">Per-room labels</span>
+              <select><option>Room name + area</option><option>Area only</option><option>Off</option></select>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="sec"><span class="eyebrow">Batch</span><span class="dimrule"></span></div>
+
+      <div class="stats" style="margin-bottom:14px">
+        <div class="stat"><span class="eyebrow">Plans found</span><b id="s1">—</b></div>
+        <div class="stat"><span class="eyebrow">PNG renders</span><b id="s2">—</b></div>
+        <div class="stat"><span class="eyebrow">Scale resolved</span><b id="s3">—</b></div>
+        <div class="stat"><span class="eyebrow">Annotated</span><b id="s4">—</b></div>
+      </div>
+
+      <div class="card" style="margin-bottom:22px">
+        <div class="card-b" style="display:flex;align-items:center;gap:16px">
+          <div class="prog" style="flex:1"><i id="bar"></i></div>
+          <span class="mono" id="barlab" style="font-size:11.5px;color:var(--ink-2);white-space:nowrap">Idle</span>
+        </div>
+      </div>
+
+      <div class="sec"><span class="eyebrow">Results</span><span class="dimrule"></span></div>
+
+      <div class="grid g-results">
+        <div class="card">
+          <div class="card-h">
+            <span class="eyebrow">Extracted dimensions</span>
+            <div style="margin-left:auto;display:flex;gap:8px">
+              <button class="btn ghost" style="padding:7px 13px">Export CSV</button>
+              <button class="btn ghost" style="padding:7px 13px">Download ZIP</button>
+            </div>
+          </div>
+          <div class="tbl-scroll">
+            <table>
+              <thead><tr>
+                <th>Plan ID</th><th>Scale</th><th>Width</th><th>Depth</th><th>Floor area</th><th>Rooms</th><th>Status</th>
+              </tr></thead>
+              <tbody id="rows">
+                <tr><td colspan="7" style="color:var(--ink-3);padding:26px 12px;text-align:center;font-family:var(--body)">Scan a folder to begin.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-h"><span class="eyebrow">Annotated output</span><span class="mono" id="pvid" style="margin-left:auto;font-size:11px;color:var(--ink-3)">—</span></div>
+          <div class="card-b">
+            <div class="preview">
+              <!-- illustrative render of what the pipeline writes back to disk -->
+              <svg viewBox="0 0 420 340" role="img" aria-label="Annotated floor plan preview">
+                <g stroke="#14202A" fill="none">
+                  <rect x="70" y="60" width="290" height="215" stroke-width="5"/>
+                  <path d="M215 60V170M215 205v70M70 170h145M295 170v105" stroke-width="4"/>
+                  <path d="M215 170h50" stroke-width="4"/>
+                </g>
+                <!-- door swings -->
+                <g stroke="#8B979B" stroke-width="1.2" fill="none">
+                  <path d="M215 185a20 20 0 0 1 20-20"/><path d="M150 170a20 20 0 0 1 20 20"/>
+                  <path d="M295 215a20 20 0 0 1-20-20"/>
+                </g>
+                <g font-family="IBM Plex Sans" font-size="9" fill="#5A6970" text-anchor="middle">
+                  <text x="142" y="112">LIVING</text><text x="288" y="112">BEDROOM</text>
+                  <text x="142" y="228">KITCHEN</text><text x="255" y="245">HALL</text><text x="330" y="228">BATH</text>
+                </g>
+                <!-- MEASUREMENT INK — dimension lines only -->
+                <g stroke="#E0532B" stroke-width="1.3">
+                  <path d="M70 34h290M70 27v14M360 27v14"/>
+                  <path d="M44 60v215M37 60h14M37 275h14"/>
+                </g>
+                <g font-family="IBM Plex Mono" font-size="11" font-weight="600" fill="#E0532B" text-anchor="middle">
+                  <rect x="182" y="24" width="66" height="16" fill="#fff"/>
+                  <text x="215" y="36">9.40 m</text>
+                  <g transform="translate(44 168) rotate(-90)">
+                    <rect x="-33" y="-8" width="66" height="16" fill="#fff"/>
+                    <text y="4">6.95 m</text>
+                  </g>
+                  <text x="142" y="126" font-size="9" font-weight="500">18.4 m²</text>
+                  <text x="288" y="126" font-size="9" font-weight="500">14.1 m²</text>
+                  <text x="142" y="242" font-size="9" font-weight="500">11.2 m²</text>
+                  <text x="330" y="242" font-size="9" font-weight="500">4.3 m²</text>
+                </g>
+              </svg>
+            </div>
+            <p class="note" style="margin-top:12px">
+              Orange marks every real-world value, on screen and in the exported PNG.
+              Ink black stays structural.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ VIEW 2 ══════════════ -->
+    <section class="view" id="v2" role="tabpanel" aria-labelledby="t2" hidden>
+
+      <div class="sec"><span class="eyebrow">Reference</span><span class="dimrule"></span></div>
+      <div class="docchip" style="margin-bottom:22px;max-width:520px">
+        <span class="pulse"></span>
+        <b style="font-weight:600">Technical Guidance Document M — Access and Use</b>
+        <span class="mono" style="margin-left:auto;color:var(--ink-3);font-size:11px">142 clauses indexed</span>
+      </div>
+
+      <div class="grid g-chat">
+
+        <!-- plan picker -->
+        <div class="card" style="align-self:start">
+          <div class="card-h"><span class="eyebrow">Plan under review</span></div>
+          <div class="planlist" id="picker"></div>
+        </div>
+
+        <!-- chat -->
+        <div class="card" style="display:flex;flex-direction:column;overflow:hidden">
+          <div class="card-h"><span class="eyebrow">Review conversation</span>
+            <span class="mono" id="who" style="margin-left:auto;font-size:11px;color:var(--ink-3)">plan_0142</span>
+          </div>
+          <div class="thread" id="thread"></div>
+          <div class="suggest" id="suggest">
+            <button>Is the hall wide enough for a wheelchair?</button>
+            <button>Check every door clear width</button>
+            <button>Can a 1500 mm turning circle fit in the bathroom?</button>
+            <button>Summarise what fails</button>
+          </div>
+          <div class="composer">
+            <input type="text" id="ask" placeholder="Ask about this plan…" aria-label="Ask about this plan">
+            <button class="btn" id="send">Send</button>
+          </div>
+        </div>
+
+        <!-- verdict -->
+        <div class="verdict" style="align-self:start">
+          <div class="verdict-h fail">
+            <span class="eyebrow">Determination</span>
+            <div class="call">Not accessible<br>as drawn</div>
+            <p class="note" style="margin-top:9px">3 of 6 checks fail. Each is traced to a clause in TGD&nbsp;M.</p>
+          </div>
+          <div class="check"><span class="dot no"></span><div class="k">
+            <b>Bathroom door clear width</b>
+            <small><span class="measure-sm">720 mm</span> measured · <span class="ref">TGD M 3.4</span></small></div></div>
+          <div class="check"><span class="dot no"></span><div class="k">
+            <b>Wheelchair turning circle, bath</b>
+            <small><span class="measure-sm">1.98 × 2.15 m</span> room · <span class="ref">TGD M 3.6</span></small></div></div>
+          <div class="check"><span class="dot no"></span><div class="k">
+            <b>Hall pinch point</b>
+            <small><span class="measure-sm">860 mm</span> at narrowest · <span class="ref">TGD M 3.3</span></small></div></div>
+          <div class="check"><span class="dot ok"></span><div class="k">
+            <b>Entrance door clear width</b>
+            <small><span class="measure-sm">910 mm</span> measured · <span class="ref">TGD M 1.5</span></small></div></div>
+          <div class="check"><span class="dot ok"></span><div class="k">
+            <b>Living space manoeuvring</b>
+            <small><span class="measure-sm">18.4 m²</span> · <span class="ref">TGD M 3.6</span></small></div></div>
+          <div class="check"><span class="dot wr"></span><div class="k">
+            <b>Threshold level access</b>
+            <small>Not determinable from plan geometry · <span class="ref">TGD M 1.3</span></small></div></div>
+          <div class="card-b" style="border-top:1px solid var(--rule)">
+            <button class="btn" style="width:100%">Export review as PDF</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    </div>
+
+    <footer>
+      <span>Datum · Rev A · Prototype</span>
+      <span>Measurements shown in orange throughout</span>
+    </footer>
+  </div>
+</div>
+
+<script>
+/* ---------------- tabs ---------------- */
+const tabs=[...document.querySelectorAll('.tab')];
+tabs.forEach(t=>t.addEventListener('click',()=>{
+  tabs.forEach(x=>{
+    const on=x===t;
+    x.setAttribute('aria-selected',on);
+    document.getElementById(x.getAttribute('aria-controls')).hidden=!on;
+  });
+}));
+
+/* ---------------- segmented controls ---------------- */
+document.querySelectorAll('.seg').forEach(seg=>{
+  seg.addEventListener('click',e=>{
+    const b=e.target.closest('button'); if(!b) return;
+    [...seg.children].forEach(x=>x.setAttribute('aria-pressed',x===b));
+  });
+});
+
+/* ---------------- mock dataset ---------------- */
+const PLANS=[
+  ['plan_0142',214.6,9.40,6.95,65.3,5,'ok'],
+  ['plan_0143',211.2,7.85,8.10,63.6,4,'ok'],
+  ['plan_0144',218.0,12.05,7.40,89.2,6,'ok'],
+  ['plan_0145',null ,null ,null ,null,3,'no'],
+  ['plan_0146',214.6,6.20,5.55,34.4,3,'ok'],
+  ['plan_0147',209.9,10.75,9.15,98.4,7,'ok'],
+  ['plan_0148',214.6,8.30,6.10,50.6,4,'wr'],
+  ['plan_0149',216.3,11.40,8.85,100.9,6,'ok']
+];
+const STATUS={ok:['ok','Annotated'],no:['no','No scale'],wr:['wr','Check']};
+const fmt=(v,u)=>v==null?'—':`${v.toFixed(2)} ${u}`;
+
+document.getElementById('scan').onclick=()=>{
+  document.getElementById('s1').textContent='104';
+  document.getElementById('s2').textContent='231';
+  document.getElementById('s3').textContent='101';
+  document.getElementById('s4').textContent='0';
+  document.getElementById('run').disabled=false;
+  document.getElementById('barlab').textContent='Ready — 104 plans queued';
+  paint(false);
+};
+
+function paint(done){
+  document.getElementById('rows').innerHTML=PLANS.map((p,i)=>{
+    const [id,sc,w,d,a,r,st]=p;
+    const [cls,lab]=done?STATUS[st]:['nu','Queued'];
+    return `<tr data-i="${i}" ${i===0?'aria-selected="true"':''}>
+      <td>${id}</td>
+      <td>${sc?`<span class="measure-sm">${sc.toFixed(1)}</span> px/m`:'—'}</td>
+      <td class="measure">${fmt(w,'m')}</td>
+      <td class="measure">${fmt(d,'m')}</td>
+      <td class="measure">${a==null?'—':a.toFixed(1)+' m²'}</td>
+      <td>${r}</td>
+      <td><span class="chip ${cls}">${lab}</span></td>
+    </tr>`;
+  }).join('');
+  document.querySelectorAll('#rows tr[data-i]').forEach(tr=>tr.onclick=()=>{
+    document.querySelectorAll('#rows tr').forEach(x=>x.removeAttribute('aria-selected'));
+    tr.setAttribute('aria-selected','true');
+    document.getElementById('pvid').textContent=PLANS[tr.dataset.i][0]+'_annotated.png';
+  });
+  document.getElementById('pvid').textContent=PLANS[0][0]+'_annotated.png';
+}
+
+document.getElementById('run').onclick=e=>{
+  e.target.disabled=true;
+  let n=0; const total=104;
+  const bar=document.getElementById('bar'), lab=document.getElementById('barlab');
+  const t=setInterval(()=>{
+    n+=Math.ceil(Math.random()*5);
+    if(n>=total){n=total;clearInterval(t);
+      lab.textContent='Done — 101 annotated, 3 skipped';
+      document.getElementById('s4').textContent='101'; paint(true);
+    } else lab.textContent=`Annotating ${n} / ${total}`;
+    bar.style.width=(n/total*100)+'%';
+  },110);
+};
+
+/* ---------------- plan picker ---------------- */
+document.getElementById('picker').innerHTML=PLANS.filter(p=>p[2]).map((p,i)=>
+  `<button class="planitem" ${i===0?'aria-pressed="true"':''} data-id="${p[0]}">
+     <span>${p[0]}</span><span class="measure-sm">${p[4].toFixed(1)} m²</span></button>`).join('');
+document.querySelectorAll('.planitem').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.planitem').forEach(x=>x.setAttribute('aria-pressed',x===b));
+  document.getElementById('who').textContent=b.dataset.id;
+});
+
+/* ---------------- chat ---------------- */
+const thread=document.getElementById('thread');
+function add(role,html){
+  const d=document.createElement('div');
+  d.className='msg '+(role==='me'?'me':'');
+  d.innerHTML=`<div class="who eyebrow">${role==='me'?'You':'Datum'}</div><div class="bub">${html}</div>`;
+  thread.appendChild(d); thread.scrollTop=thread.scrollHeight; return d;
+}
+add('ai',`<p>I've loaded <b>plan_0142</b> — overall <span class="measure">9.40 × 6.95 m</span>, five rooms, scale resolved at <span class="measure-sm">214.6</span> px/m.</p>
+<p>I'll check it against Technical Guidance Document M and tell you where it falls short. Ask me anything, or use a prompt below.</p>`);
+
+const REPLIES={
+  hall:`<p>The hall narrows to <span class="measure">860 mm</span> between the kitchen wall and the bathroom door reveal.</p>
+<p><span class="ref">TGD M 3.3</span> looks for a clear width that lets a wheelchair pass along a circulation route. <b>860 mm falls short at that pinch point</b>, so this fails as drawn.</p>
+<p>Widening the hall by roughly <span class="measure">140 mm</span> — moving the kitchen partition — would clear it.</p>`,
+  door:`<p>Four door openings measured off the SVG geometry:</p>
+<ul>
+<li>Entrance — <span class="measure-sm">910 mm</span> · passes <span class="ref">TGD M 1.5</span></li>
+<li>Living — <span class="measure-sm">880 mm</span> · passes</li>
+<li>Bedroom — <span class="measure-sm">820 mm</span> · passes</li>
+<li>Bathroom — <span class="measure-sm">720 mm</span> · <b>fails</b> <span class="ref">TGD M 3.4</span></li>
+</ul>
+<p>The bathroom door is the single blocking item on doors.</p>`,
+  turn:`<p>The bathroom measures <span class="measure">1.98 × 2.15 m</span>, but fittings cut the usable floor down. The largest unobstructed circle I can fit is about <span class="measure">1.32 m</span>.</p>
+<p><span class="ref">TGD M 3.6</span> works to a <span class="measure-sm">1500 mm</span> turning circle. <b>This room fails.</b></p>`,
+  sum:`<p>Three items fail:</p>
+<ul>
+<li>Bathroom door clear width — <span class="measure-sm">720 mm</span> <span class="ref">TGD M 3.4</span></li>
+<li>Bathroom turning circle — <span class="measure-sm">1.32 m</span> available <span class="ref">TGD M 3.6</span></li>
+<li>Hall pinch point — <span class="measure-sm">860 mm</span> <span class="ref">TGD M 3.3</span></li>
+</ul>
+<p>One item is undetermined: threshold level access isn't readable from plan geometry — it needs a section drawing.</p>
+<p><b>Determination: not accessible as drawn.</b></p>`,
+  def:`<p>I can only measure what the plan geometry gives me. For that question I'd need either a section, an elevation, or a note in the drawing.</p>
+<p>Try asking about door widths, room areas, corridor clearances, or turning circles — those I can derive directly.</p>`
+};
+function pick(q){
+  q=q.toLowerCase();
+  if(/hall|corridor|pinch|passage/.test(q))return REPLIES.hall;
+  if(/door|width|opening/.test(q))return REPLIES.door;
+  if(/turn|circle|1500|bathroom|wc|toilet/.test(q))return REPLIES.turn;
+  if(/summar|fail|verdict|overall|eligib/.test(q))return REPLIES.sum;
+  return REPLIES.def;
+}
+function send(text){
+  if(!text.trim())return;
+  add('me',text.replace(/</g,'&lt;'));
+  const t=add('ai','<div class="typing"><i></i><i></i><i></i></div>');
+  setTimeout(()=>{t.querySelector('.bub').innerHTML=pick(text);thread.scrollTop=thread.scrollHeight;},850);
+}
+document.getElementById('send').onclick=()=>{const i=document.getElementById('ask');send(i.value);i.value=''};
+document.getElementById('ask').addEventListener('keydown',e=>{if(e.key==='Enter'){document.getElementById('send').click()}});
+document.getElementById('suggest').addEventListener('click',e=>{const b=e.target.closest('button');if(b)send(b.textContent)});
+</script>
