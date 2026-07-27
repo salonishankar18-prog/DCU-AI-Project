@@ -14,11 +14,7 @@ datum/data/tgdm/tgdm_index.json
 # Folders uploaded through the UI's "Upload folder…" control.
 datum/data/uploads/
 
-# The dataset as downloaded is not ours to redistribute — keep the one sample
-# plan the pipeline is tested against, ignore anything else dropped in.
-datum/data/raw/*
-!datum/data/raw/.gitkeep
-!datum/data/raw/sample_plan_0001/
+# datum/data/raw/ dataset plans are committed.
 
 # TGD M is a government publication — let setup place it rather than
 # redistributing it from this repo.
