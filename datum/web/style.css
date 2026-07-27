@@ -191,7 +191,7 @@ body{
 
 .grid{display:grid;gap:16px}
 .g-intake{grid-template-columns:1.15fr .85fr}
-.g-results{grid-template-columns:.85fr 1.15fr}
+.g-results{grid-template-columns:1fr 1fr}
 .g-chat{grid-template-columns:230px minmax(0,1fr) 340px;align-items:start}
 .g-doc{grid-template-columns:280px minmax(0,1fr);align-items:start}
 @media(max-width:1200px){
@@ -251,6 +251,14 @@ input[type=text]:focus,select:focus{outline:2px solid var(--ink);outline-offset:
 
 /* ---------- table ---------- */
 .tbl-scroll{overflow:auto;max-height:340px}
+/* Tab 1 results row: both cards share one explicit height so the table
+   fills it (instead of leaving blank space below a shorter fixed-height
+   table) without the reverse problem of the table dictating the row's
+   height by rendering every row unclipped. */
+.g-results > .card{height:min(70vh,760px);display:flex;flex-direction:column;overflow:hidden}
+.g-results > .card > .card-h{flex:none}
+.tablecard .tbl-scroll{flex:1;min-height:0;max-height:none;overflow:auto}
+.g-results > .card:last-child > .card-b{flex:1;min-height:0;overflow:auto}
 table{width:100%;border-collapse:collapse;font-size:12.5px}
 th{
   position:sticky;top:0;background:var(--panel-2);
@@ -286,7 +294,7 @@ tbody tr[aria-selected="true"]{background:#fff;box-shadow:inset 2.5px 0 0 var(--
 /* ============================================================
    TAB 2 — chat + verdict
    ============================================================ */
-.planlist{display:flex;flex-direction:column;gap:1px;background:var(--rule-soft);max-height:420px;overflow:auto}
+.planlist{display:flex;flex-direction:column;gap:1px;background:var(--rule-soft);max-height:420px;overflow:auto;scrollbar-gutter:stable}
 .planitem{
   appearance:none;border:0;cursor:pointer;text-align:left;
   background:var(--panel);padding:10px 14px;font-family:var(--mono);font-size:12px;
@@ -297,7 +305,7 @@ tbody tr[aria-selected="true"]{background:#fff;box-shadow:inset 2.5px 0 0 var(--
 .planitem[aria-pressed="true"] .measure-sm{color:#F0A88E}
 
 .thread{
-  height:440px;overflow:auto;padding:18px;
+  height:440px;overflow:auto;padding:18px;scrollbar-gutter:stable;
   display:flex;flex-direction:column;gap:16px;background:var(--panel);
 }
 .msg{max-width:82%;animation:rise .25s ease}
@@ -358,15 +366,33 @@ tbody tr[aria-selected="true"]{background:#fff;box-shadow:inset 2.5px 0 0 var(--
 .docchip .pulse{width:6px;height:6px;border-radius:50%;background:var(--pass);flex:none}
 .docchip .pulse.off{background:var(--flag)}
 
-/* ---------- Tab 2: top row — plan picker, floor plan viewer, verdict ---------- */
-.planviewer .preview.big{padding:14px}
-.preview.big img{max-height:min(64vh,700px)}
-#pickerCard .planlist{max-height:min(64vh,700px)}
-.verdict{max-height:min(72vh,780px);overflow:auto}
+/* ---------- Tab 2: top row — plan picker, floor plan viewer, verdict ----------
+   All three sit in one row and share one height, each scrolling internally,
+   so the row bottom lines up instead of leaving a jagged edge. */
+.g-chat > .card,
+.g-chat > .verdict{
+  height:min(70vh,760px);display:flex;flex-direction:column;overflow:hidden;
+}
+.g-chat > .card > .card-h{flex:none}
 
-/* ---------- Tab 2: chat — full-width band across the bottom of the tab ---------- */
+#pickerCard .planlist{flex:1;min-height:0;max-height:none;overflow:auto}
+
+.planviewer .card-b{flex:1;min-height:0;display:flex;padding:14px}
+.planviewer .preview.big{
+  flex:1;min-height:0;display:flex;align-items:center;justify-content:center;
+  overflow:auto;padding:14px;
+}
+.preview.big img{max-height:100%;max-width:100%;width:auto;object-fit:contain}
+
+.verdict-h{flex:none}
+#checks{flex:1;min-height:0;overflow:auto;scrollbar-gutter:stable}
+.verdict > .card-b{flex:none}
+
+/* ---------- Tab 2: chat — full-width band across the bottom of the tab.
+   Sized to its content (a short reply doesn't leave a half-empty box) but
+   capped so a long conversation scrolls instead of pushing the page on. ---------- */
 .chatcard-full{display:flex;flex-direction:column;overflow:hidden;margin-top:16px}
-.chatcard-full .thread{height:min(42vh,440px)}
+.chatcard-full .thread{height:auto;min-height:120px;max-height:min(42vh,440px)}
 .chatcard-full .composer input{font-size:14px}
 
 /* ---------- clause references — clickable links into the TGD M PDF ---------- */
@@ -379,10 +405,14 @@ a.ref{
 a.ref::after{content:"↗";font-size:9px;opacity:.6}
 a.ref:hover{border-color:var(--dim);color:var(--dim);background:#fff}
 
-/* ---------- Tab 3 — TGD M document viewer ---------- */
-.docviewer{overflow:hidden}
-#docFrame{width:100%;height:min(82vh,900px);border:0;display:block;background:#fff}
-#clauseToc{max-height:min(82vh,900px);overflow:auto}
+/* ---------- Tab 3 — TGD M document viewer ----------
+   Clause list and PDF viewer share one height so the two columns end at the
+   same line, each scrolling internally rather than stretching the page. */
+.g-doc > .card{height:min(84vh,920px);display:flex;flex-direction:column;overflow:hidden}
+.g-doc > .card > .card-h{flex:none}
+#clauseToc{flex:1;min-height:0;max-height:none;overflow:auto}
+.docviewer .card-b{flex:1;min-height:0;padding:0}
+#docFrame{width:100%;height:100%;border:0;display:block;background:#fff}
 .clauserow{
   appearance:none;border:0;cursor:pointer;text-align:left;width:100%;
   background:var(--panel);padding:9px 14px;font-family:var(--mono);font-size:11.5px;
