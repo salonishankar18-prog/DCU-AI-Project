@@ -41,6 +41,9 @@
       <button class="tab" role="tab" id="t2" aria-controls="v2" aria-selected="false">
         <span class="n">02</span>Access review
       </button>
+      <button class="tab" role="tab" id="t3" aria-controls="v3" aria-selected="false">
+        <span class="n">03</span>TGD M document
+      </button>
     </nav>
 
     <div class="panelwrap">
@@ -168,7 +171,7 @@
       <div class="banner" id="err2" hidden></div>
 
       <div class="sec"><span class="eyebrow">Reference</span><span class="dimrule"></span></div>
-      <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:22px">
+      <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:16px">
         <div class="docchip" style="flex:1;min-width:340px">
           <span class="pulse" id="docPulse"></span>
           <b style="font-weight:600">Technical Guidance Document M — Access and Use</b>
@@ -188,38 +191,29 @@
       <div class="grid g-chat">
 
         <!-- plan picker -->
-        <div class="card" style="align-self:start">
-          <div class="card-h"><span class="eyebrow">Plan under review</span></div>
+        <div class="card" id="pickerCard">
+          <div class="card-h"><span class="eyebrow">Plan under review</span>
+            <span class="mono" id="who" style="margin-left:auto;font-size:11px;color:var(--ink-3)">—</span>
+          </div>
           <div class="planlist" id="picker">
             <div style="padding:16px" class="note">No plans yet — run Tab 1.</div>
           </div>
-          <div class="card-b" style="border-top:1px solid var(--rule-soft)">
-            <div class="preview" id="reviewPreview" style="padding:6px">
-              <div class="empty" style="min-height:120px">Pick a plan to see its drawing.</div>
+        </div>
+
+        <!-- centre: floor plan viewer -->
+        <div class="card planviewer">
+          <div class="card-h"><span class="eyebrow">Floor plan</span>
+            <span class="mono" id="reviewPvId" style="margin-left:auto;font-size:11px;color:var(--ink-3)">—</span>
+          </div>
+          <div class="card-b">
+            <div class="preview big" id="reviewPreview">
+              <div class="empty" style="min-height:220px">Pick a plan to see its drawing.</div>
             </div>
           </div>
         </div>
 
-        <!-- chat -->
-        <div class="card" style="display:flex;flex-direction:column;overflow:hidden">
-          <div class="card-h"><span class="eyebrow">Review conversation</span>
-            <span class="mono" id="who" style="margin-left:auto;font-size:11px;color:var(--ink-3)">—</span>
-          </div>
-          <div class="thread" id="thread"></div>
-          <div class="suggest" id="suggest">
-            <button>Is the hall wide enough for a wheelchair?</button>
-            <button>Check every door clear width</button>
-            <button>Can a 1500 mm turning circle fit in the bathroom?</button>
-            <button>Summarise what fails</button>
-          </div>
-          <div class="composer">
-            <input type="text" id="ask" placeholder="Ask about this plan…" aria-label="Ask about this plan">
-            <button class="btn" id="send">Send</button>
-          </div>
-        </div>
-
         <!-- verdict -->
-        <div class="verdict" style="align-self:start">
+        <div class="verdict" id="verdictCard">
           <div class="verdict-h" id="verdictHead">
             <span class="eyebrow">Determination</span>
             <div class="call" id="verdictCall">Not run</div>
@@ -232,6 +226,22 @@
           </div>
         </div>
 
+      </div>
+
+      <!-- chat — full width band across the bottom of the tab -->
+      <div class="card chatcard-full">
+        <div class="card-h"><span class="eyebrow">Review conversation</span></div>
+        <div class="thread" id="thread"></div>
+        <div class="suggest" id="suggest">
+          <button>Is the hall wide enough for a wheelchair?</button>
+          <button>Check every door clear width</button>
+          <button>Can a 1500 mm turning circle fit in the bathroom?</button>
+          <button>Summarise what fails</button>
+        </div>
+        <div class="composer">
+          <input type="text" id="ask" placeholder="Ask about this plan…" aria-label="Ask about this plan">
+          <button class="btn" id="send">Send</button>
+        </div>
       </div>
 
       <div id="geomWrap" hidden style="margin-top:22px">
@@ -252,6 +262,38 @@
         <div class="card-b" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;align-items:center">
           <span class="eyebrow">Last Claude analysis</span>
           <span class="mono" id="costLine" style="color:var(--ink-2);font-size:12px">No analysis run yet.</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ────────────── VIEW 3 — TGD M document ────────────── -->
+    <section class="view" id="v3" role="tabpanel" aria-labelledby="t3" hidden>
+
+      <div class="sec"><span class="eyebrow">Reference document</span><span class="dimrule"></span></div>
+
+      <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:22px">
+        <div class="docchip" style="flex:1;min-width:340px">
+          <span class="pulse" id="docPulse3"></span>
+          <b style="font-weight:600">Technical Guidance Document M 2022 — Access and Use</b>
+          <span class="mono" id="docStat3" style="margin-left:auto;color:var(--ink-3);font-size:11px">—</span>
+        </div>
+        <a class="btn" id="pdfOpenNewTab" href="/web/tgdm/TGD-M.pdf" target="_blank" rel="noopener">Open in new tab ↗</a>
+      </div>
+
+      <div class="grid g-doc">
+        <div class="card" style="align-self:start">
+          <div class="card-h"><span class="eyebrow">Clauses</span></div>
+          <div class="planlist" id="clauseToc" style="max-height:none"></div>
+        </div>
+
+        <div class="card docviewer">
+          <div class="card-h"><span class="eyebrow">Viewing</span>
+            <span class="mono" id="docFrameLabel" style="margin-left:auto;font-size:11px;color:var(--ink-3)">page 1</span>
+          </div>
+          <div class="card-b" style="padding:0">
+            <iframe id="docFrame" src="/web/tgdm/TGD-M.pdf" title="TGD M 2022 — Access and Use"></iframe>
+          </div>
         </div>
       </div>
 

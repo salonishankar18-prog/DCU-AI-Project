@@ -17,8 +17,10 @@ datum/data/uploads/
 # datum/data/raw/ dataset plans are committed.
 
 # TGD M is a government publication — let setup place it rather than
-# redistributing it from this repo.
+# redistributing it from this repo. web/tgdm/TGD-M.pdf is the same file,
+# copied there only so the running app can serve it to the browser.
 datum/data/tgdm/TGD-M.pdf
+datum/web/tgdm/TGD-M.pdf
 
 .DS_Store
 datum/data/datum_report.xlsx

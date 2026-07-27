@@ -16,11 +16,12 @@ Pre-computed output from a full run of both tabs over every plan in
   (`compliant_with_flags` / `non_compliant` / `undetermined` / `excluded`),
   applicable TGD M section, the governing clause, model used, per-call cost,
   and whether the result was served from cache.
-- `tgdm_clause_reference.json` — the TGD M 2022 clause index the Tab 2 model
-  was shown for every judgement (clause id, heading, verbatim text, page,
-  section scope). Rebuilt from the TGD M 2022 document text directly (see
-  `build_tgdm_cache.py` in the project root) rather than from the literal
-  PDF, since the PDF itself isn't redistributed in this repo.
+- `tgdm_clause_reference.json` — the TGD M 2022 clause index (clause id,
+  heading, page, section scope) extracted directly from the real, official
+  PDF (`assets.gov.ie/static/documents/technical-guidance-document-m-access-and-use-2022.pdf`),
+  via `review/tgdm_index.py`'s own extractor. 140 clauses. The PDF itself
+  isn't redistributed in this repo (same policy as `data/tgdm/TGD-M.pdf`) —
+  `run.py` setup fetches/places it locally.
 - `plans/<plan_id>/` — per-plan output:
   - `dimensions.json` — full measurement record, including the room polygons
     the manifest drops to stay lightweight.
@@ -36,6 +37,21 @@ Pre-computed output from a full run of both tabs over every plan in
   floor surfaces); the verdict names the drawing that would answer it.
 - `excluded` — plan fell through to the scale fallback during Tab 1 extraction
   and was excluded from review rather than silently assessed on an estimated scale.
+
+## Note on the 20 cached verdicts and the clause reference
+
+The 20 verdicts in `manifest.json` / `tab2_verdicts.csv` were originally computed
+against an earlier, hand-approximated reconstruction of the TGD M clause text
+(the real PDF wasn't available to the app yet at that point). That
+reconstruction has since been replaced entirely with the real, official PDF —
+`tgdm_clause_reference.json` above reflects the real 140-clause extraction, and
+the app's clause links now all resolve to the correct page of the genuine
+document. The 20 already-cached verdicts were **not** re-run against the real
+text (a deliberate choice, to avoid the added API spend) — their clause
+citations now link correctly, but their reasoning and quoted figures were
+generated from the approximated wording, not the verbatim original. Re-running
+`POST /api/verdict/all` with `refresh: true` for those 20 plan ids would
+regenerate them against the real clause text.
 
 ## Note on Tab 2 coverage
 

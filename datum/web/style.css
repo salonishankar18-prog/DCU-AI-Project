@@ -60,14 +60,13 @@ body{
    SHEET FRAME + TITLE BLOCK RAIL
    ============================================================ */
 .sheet{
-  max-width:1360px;
+  max-width:none;
+  width:100%;
   margin:0 auto;
   min-height:100vh;
   display:grid;
   grid-template-columns:56px 1fr;
   background:var(--sheet);
-  border-left:1px solid var(--rule);
-  border-right:1px solid var(--rule);
 }
 .rail{
   border-right:1px solid var(--rule);
@@ -182,6 +181,7 @@ body{
   background:var(--panel);
   border:1px solid var(--rule);
   border-radius:var(--r);
+  box-shadow:0 1px 3px rgba(20,32,42,.05);
 }
 .card-h{
   padding:12px 16px;border-bottom:1px solid var(--rule-soft);
@@ -192,9 +192,16 @@ body{
 .grid{display:grid;gap:16px}
 .g-intake{grid-template-columns:1.15fr .85fr}
 .g-results{grid-template-columns:.85fr 1.15fr}
-.g-chat{grid-template-columns:250px 1fr 320px}
+.g-chat{grid-template-columns:230px minmax(0,1fr) 340px;align-items:start}
+.g-doc{grid-template-columns:280px minmax(0,1fr);align-items:start}
+@media(max-width:1200px){
+  .g-chat{grid-template-columns:220px minmax(0,1fr)}
+  .g-chat .verdict{grid-column:1/-1}
+}
 @media(max-width:1080px){
-  .g-intake,.g-results,.g-chat{grid-template-columns:1fr}
+  .g-intake,.g-results,.g-doc{grid-template-columns:1fr}
+  .g-chat{grid-template-columns:1fr}
+  .g-chat .verdict{grid-column:auto}
 }
 
 /* ---------- form controls ---------- */
@@ -350,6 +357,46 @@ tbody tr[aria-selected="true"]{background:#fff;box-shadow:inset 2.5px 0 0 var(--
 }
 .docchip .pulse{width:6px;height:6px;border-radius:50%;background:var(--pass);flex:none}
 .docchip .pulse.off{background:var(--flag)}
+
+/* ---------- Tab 2: top row — plan picker, floor plan viewer, verdict ---------- */
+.planviewer .preview.big{padding:14px}
+.preview.big img{max-height:min(64vh,700px)}
+#pickerCard .planlist{max-height:min(64vh,700px)}
+.verdict{max-height:min(72vh,780px);overflow:auto}
+
+/* ---------- Tab 2: chat — full-width band across the bottom of the tab ---------- */
+.chatcard-full{display:flex;flex-direction:column;overflow:hidden;margin-top:16px}
+.chatcard-full .thread{height:min(42vh,440px)}
+.chatcard-full .composer input{font-size:14px}
+
+/* ---------- clause references — clickable links into the TGD M PDF ---------- */
+a.ref{
+  display:inline-flex;align-items:center;gap:4px;text-decoration:none;
+  font-family:var(--mono);font-size:11px;
+  padding:1px 5px;border:1px solid var(--rule);border-radius:2px;
+  background:var(--panel-2);color:var(--ink-2);cursor:pointer;transition:.12s;
+}
+a.ref::after{content:"↗";font-size:9px;opacity:.6}
+a.ref:hover{border-color:var(--dim);color:var(--dim);background:#fff}
+
+/* ---------- Tab 3 — TGD M document viewer ---------- */
+.docviewer{overflow:hidden}
+#docFrame{width:100%;height:min(82vh,900px);border:0;display:block;background:#fff}
+#clauseToc{max-height:min(82vh,900px);overflow:auto}
+.clauserow{
+  appearance:none;border:0;cursor:pointer;text-align:left;width:100%;
+  background:var(--panel);padding:9px 14px;font-family:var(--mono);font-size:11.5px;
+  display:flex;flex-direction:column;gap:2px;transition:.12s;
+}
+.clauserow:hover{background:#fff}
+.clauserow[aria-pressed="true"]{background:var(--ink);color:var(--panel)}
+.clauserow b{font-family:var(--display);font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+.clauserow[aria-pressed="true"] b{color:#F0A88E}
+.clauserow span{font-family:var(--body);font-size:11.5px;color:inherit}
+.clausegroup{
+  padding:8px 14px 4px;font-family:var(--display);font-weight:700;font-size:9.5px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);background:var(--panel-2);
+}
 
 .note{font-size:12px;color:var(--ink-2);line-height:1.55}
 .note code{font-family:var(--mono);font-size:11.5px;background:var(--panel-2);padding:1px 4px;border-radius:2px}

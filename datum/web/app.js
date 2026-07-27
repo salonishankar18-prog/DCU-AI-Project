@@ -12,8 +12,50 @@ const state = {
   checks: null,       // deterministic geometry for the current plan
 };
 
+// clause_id -> {page, heading, scope}, loaded once from the static TGD M
+// clause map so every "TGD M x.x.x" reference can link straight to its page.
+const CLAUSES = {};
+
+async function loadClauseMap() {
+  try {
+    const list = await fetch('/web/tgdm/clauses.json').then(r => r.json());
+    list.forEach(c => { CLAUSES[c.clause_id] = c; });
+    return list;
+  } catch (_) {
+    return [];
+  }
+}
+
+function clausePdfHref(id) {
+  const c = CLAUSES[id];
+  return `/web/tgdm/TGD-M.pdf${c ? '#page=' + c.page : ''}`;
+}
+
+// Every "TGD M x.x.x" reference on screen (chat prose, verdict checks, the
+// clauses-supplied footnote) is built as a plain .ref chip by whoever renders
+// it — this turns every one of them into a link that opens the actual TGD M
+// document at the right page, in a new tab. Runs after any HTML that might
+// contain .ref spans is inserted, so it applies uniformly to fresh answers
+// and to determinations replayed from cache alike.
+function linkifyRefs(root) {
+  (root || document).querySelectorAll('span.ref').forEach(span => {
+    const m = span.textContent.match(/([\d]+(?:\.\d+){0,3})/);
+    const id = m ? m[1] : '';
+    const c = CLAUSES[id];
+    const a = document.createElement('a');
+    a.className = 'ref';
+    a.href = clausePdfHref(id);
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.title = c ? `Open TGD M — ${c.heading} (p.${c.page})` : 'Open TGD M — Access and Use';
+    a.textContent = span.textContent;
+    span.replaceWith(a);
+  });
+}
+
 /* ---------------- tabs ---------------- */
 const tabs = [...document.querySelectorAll('.tab')];
+const TAB_HASH = { t1: '#extract', t2: '#review', t3: '#document' };
 
 function selectTab(tab) {
   tabs.forEach(x => {
@@ -21,14 +63,19 @@ function selectTab(tab) {
     x.setAttribute('aria-selected', on);
     $(x.getAttribute('aria-controls')).hidden = !on;
   });
-  history.replaceState(null, '', tab.id === 't2' ? '#review' : '#extract');
+  history.replaceState(null, '', TAB_HASH[tab.id] || '#extract');
   if (tab.id === 't2') refreshPicker();
+  if (tab.id === 't3') loadDocTab();
 }
 
 tabs.forEach(t => t.addEventListener('click', () => selectTab(t)));
 
-// Deep link: /#review opens the access review tab directly.
-if (location.hash === '#review') selectTab(tabs[1]);
+// Deep link: /#review or /#document opens that tab directly.
+const HASH_TAB = { '#review': 't2', '#document': 't3' };
+if (HASH_TAB[location.hash]) {
+  const t = tabs.find(x => x.id === HASH_TAB[location.hash]);
+  if (t) selectTab(t);
+}
 
 /* ---------------- segmented controls ---------------- */
 document.querySelectorAll('.seg').forEach(seg => {
@@ -377,9 +424,11 @@ function showReviewPng(planId, rec) {
   const box = $('reviewPreview');
   const outputs = (rec && rec.outputs) || [];
   if (!outputs.length) {
-    box.innerHTML = `<div class="empty" style="min-height:120px">No annotated output for this plan.</div>`;
+    $('reviewPvId').textContent = planId;
+    box.innerHTML = `<div class="empty" style="min-height:220px">No annotated output for this plan.</div>`;
     return;
   }
+  $('reviewPvId').textContent = outputs[0].source_png || planId;
   box.innerHTML = `<img alt="Annotated floor plan ${escapeHtml(planId)}" ` +
     `src="/api/plans/${encodeURIComponent(planId)}/png?file=${encodeURIComponent(outputs[0].output_png)}">`;
 }
@@ -421,6 +470,7 @@ async function send(text) {
       bubble.querySelector('.bub').insertAdjacentHTML('beforeend',
         `<p class="note" style="margin-top:10px">Clauses supplied to the model: ${refs}</p>`);
     }
+    linkifyRefs(bubble.querySelector('.bub'));
   } catch (e) {
     bubble.querySelector('.bub').innerHTML =
       `<p>I could not complete that: ${escapeHtml(e.message)}</p>`;
@@ -518,6 +568,7 @@ function paintVerdict(v) {
     group('Passed', passed) +
     group('Informational notes', info) ||
     `<div class="check"><div class="k"><small>No checks returned.</small></div></div>`;
+  linkifyRefs($('checks'));
 
   paintCost(v.usage, v.cached);
 }
@@ -617,6 +668,45 @@ function paintGeom(r) {
   </tr>`).join('') || `<tr><td colspan="3" class="note" style="padding:16px">No room geometry.</td></tr>`;
 }
 
+/* ---------------- Tab 3 — TGD M document ---------------- */
+let docTabLoaded = false;
+
+function jumpToClause(id) {
+  const c = CLAUSES[id];
+  if (!c) return;
+  $('docFrame').src = `/web/tgdm/TGD-M.pdf#page=${c.page}`;
+  $('docFrameLabel').textContent = `${id} · ${c.heading} — page ${c.page}`;
+  document.querySelectorAll('.clauserow').forEach(x =>
+    x.setAttribute('aria-pressed', x.dataset.id === id));
+}
+
+async function loadDocTab() {
+  if (docTabLoaded) return;
+  docTabLoaded = true;
+  const list = Object.keys(CLAUSES).length ? Object.values(CLAUSES) : await loadClauseMap();
+  const groups = {
+    '0': { label: 'Part M — general', items: [] },
+    '1': { label: 'Section 1 — buildings other than dwellings', items: [] },
+    '2': { label: 'Section 2 — existing buildings other than dwellings', items: [] },
+    '3': { label: 'Section 3 — dwellings', items: [] },
+  };
+  list.slice().sort((a, b) => a.page - b.page).forEach(c => {
+    const g = groups[c.clause_id[0]] || groups['0'];
+    g.items.push(c);
+  });
+
+  $('clauseToc').innerHTML = Object.values(groups).map(g => g.items.length
+    ? `<div class="clausegroup">${escapeHtml(g.label)}</div>` +
+      g.items.map(c => `<button class="clauserow" data-id="${escapeHtml(c.clause_id)}">
+        <b>${escapeHtml(c.clause_id)} · p.${c.page}</b><span>${escapeHtml(c.heading)}</span>
+      </button>`).join('')
+    : ''
+  ).join('');
+  $('clauseToc').querySelectorAll('.clauserow').forEach(b => {
+    b.onclick = () => jumpToClause(b.dataset.id);
+  });
+}
+
 /* ---------------- boot ---------------- */
 (async () => {
   try {
@@ -624,13 +714,20 @@ function paintGeom(r) {
     $('root').value = h.dataset_default;
     if (h.annotated_plans) await loadManifest();
   } catch (_) {}
+  await loadClauseMap();
   try {
     const t = await api('/api/tgdm/status');
-    $('docStat').textContent = t.indexed ? `${t.clauses} clauses indexed` : 'not indexed';
+    const label = t.indexed ? `${t.clauses} clauses indexed` : 'not indexed';
+    $('docStat').textContent = label;
     $('docPulse').className = 'pulse' + (t.indexed ? '' : ' off');
+    $('docStat3').textContent = label;
+    $('docPulse3').className = 'pulse' + (t.indexed ? '' : ' off');
     if (t.model) $('metaModel').textContent = t.model;
   } catch (_) {
     $('docStat').textContent = 'index unavailable';
     $('docPulse').className = 'pulse off';
+    $('docStat3').textContent = 'index unavailable';
+    $('docPulse3').className = 'pulse off';
   }
+  if (HASH_TAB[location.hash] === 't3') loadDocTab();
 })();
