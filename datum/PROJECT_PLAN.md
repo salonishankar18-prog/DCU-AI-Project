@@ -13,7 +13,7 @@
 | Processing | Python 3.11 — `lxml`, `Pillow`, `numpy`, `shapely` | SVG is XML; Pillow burns the annotation; shapely handles room polygons and clearance geometry |
 | Backend | FastAPI + `uvicorn` | Async, trivial file endpoints, auto docs for the demo |
 | Frontend | One static HTML/CSS/JS page | Full design control, no build step, no framework to debug the night before |
-| LLM | Anthropic Python SDK, `claude-sonnet-4-6` | Fast enough for interactive chat, strong on structured JSON output |
+| LLM | Anthropic Python SDK, `claude-sonnet-5` | Fast enough for interactive chat, strong on structured JSON output |
 | Reference doc | TGD M PDF → chunked text → keyword + embedding retrieval | Clause text goes into the prompt so answers cite real sections |
 | Part 1 fallback | Colab notebook wrapping the same modules | Satisfies the "run in Colab" requirement without duplicating logic |
 

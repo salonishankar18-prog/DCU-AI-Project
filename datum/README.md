@@ -72,7 +72,7 @@ python run.py                # serves the UI at localhost:8000
 
 Tab 1 needs no API key. Tab 2 reports that it is unconfigured until one is set.
 
-The review model defaults to `claude-opus-5`; override with `ANTHROPIC_MODEL` in `.env`.
+The review model defaults to `claude-sonnet-5`; override with `ANTHROPIC_MODEL` in `.env`.
 
 ## Repo contents
 

@@ -26,9 +26,9 @@ import re
 from .rules import plan_geometry
 from .tgdm_index import get_index
 
-# The project plan specifies claude-sonnet-4-6. Current guidance is to default to
-# the latest Opus; both are one line apart, so the model is configuration.
-MODEL = os.getenv("ANTHROPIC_MODEL", "claude-opus-5")
+# Sonnet 5 — near-Opus quality on this kind of structured judgement at Sonnet cost.
+# Override with ANTHROPIC_MODEL; the model is configuration, not a code change.
+MODEL = os.getenv("ANTHROPIC_MODEL", "claude-sonnet-5")
 
 SYSTEM = (
     "You review residential floor plans against Technical Guidance Document M — "
