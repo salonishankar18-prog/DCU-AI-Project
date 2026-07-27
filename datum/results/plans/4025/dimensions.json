@@ -1,0 +1,341 @@
+{
+  "plan_id": "4025",
+  "px_per_m": 99.953,
+  "scale_source": "room_label_crosscheck",
+  "scale_confidence": 0.0091,
+  "viewbox": [
+    694.6800222396851,
+    860.0899810791016
+  ],
+  "wall_bbox_svg": [
+    0.0,
+    0.0,
+    694.68,
+    781.87
+  ],
+  "overall_width_m": 6.95,
+  "overall_depth_m": 7.82,
+  "internal_area_m2": 32.11,
+  "rooms": [
+    {
+      "code": "ULKOTILA",
+      "name": "Outdoor",
+      "category": "Space Outdoor",
+      "width_m": 3.72,
+      "depth_m": 1.51,
+      "area_m2": 5.62,
+      "polygon_svg": [
+        [
+          26.99,
+          69.92
+        ],
+        [
+          398.78,
+          69.92
+        ],
+        [
+          398.78,
+          221.04
+        ],
+        [
+          26.99,
+          221.04
+        ],
+        [
+          26.99,
+          69.92
+        ],
+        [
+          26.99,
+          69.92
+        ]
+      ],
+      "centroid_svg": [
+        212.88500000000002,
+        145.48
+      ],
+      "is_rectangular": true,
+      "outdoor": true
+    },
+    {
+      "code": "ALKOVI",
+      "name": "ALKOVI",
+      "category": "Space Alcove",
+      "width_m": 2.13,
+      "depth_m": 1.47,
+      "area_m2": 3.13,
+      "polygon_svg": [
+        [
+          243.14,
+          760.87
+        ],
+        [
+          29.92,
+          760.87
+        ],
+        [
+          29.92,
+          614.23
+        ],
+        [
+          243.14,
+          614.23
+        ]
+      ],
+      "centroid_svg": [
+        136.53000000000003,
+        687.5500000000001
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "ET",
+      "name": "Entrance hall",
+      "category": "Space Entry Lobby",
+      "width_m": 2.65,
+      "depth_m": 1.47,
+      "area_m2": 3.87,
+      "polygon_svg": [
+        [
+          398.78,
+          615.69
+        ],
+        [
+          507.96,
+          615.69
+        ],
+        [
+          507.96,
+          760.87
+        ],
+        [
+          243.14,
+          760.87
+        ],
+        [
+          243.14,
+          614.23
+        ],
+        [
+          398.78,
+          614.23
+        ]
+      ],
+      "centroid_svg": [
+        375.2292473133104,
+        687.8491960617679
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "OH",
+      "name": "Living room",
+      "category": "Space LivingRoom",
+      "width_m": 3.69,
+      "depth_m": 3.72,
+      "area_m2": 13.78,
+      "polygon_svg": [
+        [
+          401.37,
+          383.77
+        ],
+        [
+          398.78,
+          383.77
+        ],
+        [
+          398.78,
+          614.23
+        ],
+        [
+          29.92,
+          614.23
+        ],
+        [
+          29.92,
+          242.04
+        ],
+        [
+          401.37,
+          242.04
+        ]
+      ],
+      "centroid_svg": [
+        214.84527450440532,
+        427.8277151372048
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "KK",
+      "name": "KK",
+      "category": "Space Kitchen Kitchenette",
+      "width_m": 2.72,
+      "depth_m": 2.04,
+      "area_m2": 5.05,
+      "polygon_svg": [
+        [
+          673.68,
+          379.6
+        ],
+        [
+          604.47,
+          379.6
+        ],
+        [
+          604.47,
+          445.94
+        ],
+        [
+          408.78,
+          445.94
+        ],
+        [
+          408.78,
+          383.77
+        ],
+        [
+          401.37,
+          383.77
+        ],
+        [
+          401.37,
+          242.04
+        ],
+        [
+          673.68,
+          242.04
+        ]
+      ],
+      "centroid_svg": [
+        529.4960083015259,
+        337.0863227898468
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    },
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 0.1,
+      "depth_m": 0.49,
+      "area_m2": 0.05,
+      "polygon_svg": [
+        [
+          408.78,
+          242.04
+        ],
+        [
+          408.78,
+          291.0
+        ],
+        [
+          398.78,
+          291.0
+        ],
+        [
+          398.78,
+          242.04
+        ]
+      ],
+      "centroid_svg": [
+        403.77999999999804,
+        266.51999999999896
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "KPH",
+      "name": "Bathroom",
+      "category": "Space Bath",
+      "width_m": 2.65,
+      "depth_m": 1.5,
+      "area_m2": 3.97,
+      "polygon_svg": [
+        [
+          673.68,
+          605.69
+        ],
+        [
+          408.78,
+          605.69
+        ],
+        [
+          408.78,
+          455.94
+        ],
+        [
+          673.68,
+          455.94
+        ]
+      ],
+      "centroid_svg": [
+        541.2299999999999,
+        530.815
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "VH",
+      "name": "Walk-in closet",
+      "category": "Space Closet WalkIn",
+      "width_m": 1.56,
+      "depth_m": 1.45,
+      "area_m2": 2.26,
+      "polygon_svg": [
+        [
+          673.68,
+          760.87
+        ],
+        [
+          517.96,
+          760.87
+        ],
+        [
+          517.96,
+          615.69
+        ],
+        [
+          673.68,
+          615.69
+        ]
+      ],
+      "centroid_svg": [
+        595.8200000000002,
+        688.2800000000001
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    }
+  ],
+  "warnings": [],
+  "outputs": [
+    {
+      "source_png": "F1_original.png",
+      "output_png": "F1_original_annotated.png",
+      "png_size": [
+        542,
+        661
+      ],
+      "fit_scale": 0.46496,
+      "fit_trustworthy": false
+    },
+    {
+      "source_png": "F1_scaled.png",
+      "output_png": "F1_scaled_annotated.png",
+      "png_size": [
+        717,
+        875
+      ],
+      "fit_scale": 0.7759,
+      "fit_trustworthy": false
+    }
+  ],
+  "status": "ok"
+}

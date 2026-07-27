@@ -1,0 +1,321 @@
+{
+  "plan_id": "4841",
+  "px_per_m": 100.041,
+  "scale_source": "room_label_crosscheck",
+  "scale_confidence": 0.0034,
+  "viewbox": [
+    1160.0199851989746,
+    978.2200298309326
+  ],
+  "wall_bbox_svg": [
+    29.66,
+    178.62,
+    1160.02,
+    899.09
+  ],
+  "overall_width_m": 11.3,
+  "overall_depth_m": 7.2,
+  "internal_area_m2": 70.6,
+  "rooms": [
+    {
+      "code": "PARVEKE",
+      "name": "Balcony",
+      "category": "Space Outdoor Balcony",
+      "width_m": 3.54,
+      "depth_m": 1.41,
+      "area_m2": 4.99,
+      "polygon_svg": [
+        [
+          404.23,
+          178.75
+        ],
+        [
+          404.23,
+          37.44
+        ],
+        [
+          50.66,
+          37.44
+        ],
+        [
+          50.66,
+          178.62
+        ],
+        [
+          404.23,
+          178.75
+        ],
+        [
+          404.23,
+          178.75
+        ]
+      ],
+      "centroid_svg": [
+        227.472118423071,
+        108.0625049854272
+      ],
+      "is_rectangular": true,
+      "outdoor": true
+    },
+    {
+      "code": "OH",
+      "name": "Living room",
+      "category": "Space LivingRoom",
+      "width_m": 4.47,
+      "depth_m": 6.78,
+      "area_m2": 30.26,
+      "polygon_svg": [
+        [
+          1139.02,
+          200.0
+        ],
+        [
+          1139.02,
+          878.09
+        ],
+        [
+          692.9,
+          878.09
+        ],
+        [
+          692.0,
+          200.0
+        ]
+      ],
+      "centroid_svg": [
+        915.7349244239424,
+        538.9311169581476
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "MH",
+      "name": "Bedroom",
+      "category": "Space Room",
+      "width_m": 3.53,
+      "depth_m": 6.78,
+      "area_m2": 23.81,
+      "polygon_svg": [
+        [
+          404.0,
+          200.0
+        ],
+        [
+          404.05,
+          615.18
+        ],
+        [
+          404.05,
+          710.95
+        ],
+        [
+          395.71,
+          710.95
+        ],
+        [
+          395.71,
+          878.09
+        ],
+        [
+          50.66,
+          878.09
+        ],
+        [
+          50.66,
+          199.62
+        ]
+      ],
+      "centroid_svg": [
+        226.32148309552878,
+        537.4637273576676
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "K",
+      "name": "Kitchen",
+      "category": "Space Kitchen",
+      "width_m": 2.67,
+      "depth_m": 2.01,
+      "area_m2": 5.11,
+      "polygon_svg": [
+        [
+          670.84,
+          277.66
+        ],
+        [
+          691.84,
+          277.66
+        ],
+        [
+          691.84,
+          200.0
+        ],
+        [
+          692.0,
+          200.0
+        ],
+        [
+          691.9,
+          421.47
+        ],
+        [
+          691.84,
+          421.47
+        ],
+        [
+          691.84,
+          358.91
+        ],
+        [
+          670.84,
+          358.91
+        ],
+        [
+          670.84,
+          401.04
+        ],
+        [
+          425.06,
+          401.04
+        ],
+        [
+          425.06,
+          200.0
+        ],
+        [
+          670.84,
+          200.0
+        ]
+      ],
+      "centroid_svg": [
+        552.4688400421613,
+        301.10956460953247
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    },
+    {
+      "code": "ET",
+      "name": "Entrance hall",
+      "category": "Space Entry Lobby",
+      "width_m": 2.55,
+      "depth_m": 2.63,
+      "area_m2": 7.01,
+      "polygon_svg": [
+        [
+          691.9,
+          710.05
+        ],
+        [
+          671.84,
+          710.05
+        ],
+        [
+          671.84,
+          878.09
+        ],
+        [
+          416.71,
+          878.09
+        ],
+        [
+          416.71,
+          710.95
+        ],
+        [
+          404.05,
+          710.95
+        ],
+        [
+          404.05,
+          615.18
+        ],
+        [
+          691.9,
+          615.18
+        ]
+      ],
+      "centroid_svg": [
+        545.6927619593164,
+        742.9134510555008
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    },
+    {
+      "code": "KHH",
+      "name": "KHH",
+      "category": "Space Utility Laundry",
+      "width_m": 2.46,
+      "depth_m": 1.94,
+      "area_m2": 4.41,
+      "polygon_svg": [
+        [
+          670.84,
+          594.18
+        ],
+        [
+          589.74,
+          594.18
+        ],
+        [
+          589.74,
+          615.18
+        ],
+        [
+          511.27,
+          615.18
+        ],
+        [
+          511.27,
+          594.18
+        ],
+        [
+          425.06,
+          594.18
+        ],
+        [
+          425.06,
+          421.47
+        ],
+        [
+          670.84,
+          421.47
+        ]
+      ],
+      "centroid_svg": [
+        548.0454793378794,
+        511.4444329825082
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    }
+  ],
+  "warnings": [],
+  "outputs": [
+    {
+      "source_png": "F1_original.png",
+      "output_png": "F1_original_annotated.png",
+      "png_size": [
+        1007,
+        800
+      ],
+      "fit_scale": 0.83248,
+      "fit_trustworthy": true
+    },
+    {
+      "source_png": "F1_scaled.png",
+      "output_png": "F1_scaled_annotated.png",
+      "png_size": [
+        1205,
+        957
+      ],
+      "fit_scale": 0.99614,
+      "fit_trustworthy": true
+    }
+  ],
+  "status": "ok"
+}

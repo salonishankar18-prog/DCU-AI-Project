@@ -1,0 +1,341 @@
+{
+  "plan_id": "5594",
+  "px_per_m": 99.992,
+  "scale_source": "room_label_crosscheck",
+  "scale_confidence": 0.0042,
+  "viewbox": [
+    1535.680046081543,
+    855.9699935913086
+  ],
+  "wall_bbox_svg": [
+    0.0,
+    0.0,
+    1535.68,
+    855.97
+  ],
+  "overall_width_m": 15.36,
+  "overall_depth_m": 8.56,
+  "internal_area_m2": 96.89,
+  "rooms": [
+    {
+      "code": "PARVEKE",
+      "name": "Balcony",
+      "category": "Space Outdoor Balcony",
+      "width_m": 1.81,
+      "depth_m": 3.88,
+      "area_m2": 7.01,
+      "polygon_svg": [
+        [
+          41.92,
+          47.35
+        ],
+        [
+          222.53,
+          47.35
+        ],
+        [
+          222.53,
+          435.32
+        ],
+        [
+          41.92,
+          435.32
+        ],
+        [
+          41.92,
+          47.35
+        ],
+        [
+          41.92,
+          47.35
+        ]
+      ],
+      "centroid_svg": [
+        132.22500000000002,
+        241.335
+      ],
+      "is_rectangular": true,
+      "outdoor": true
+    },
+    {
+      "code": "VH",
+      "name": "Walk-in closet",
+      "category": "Space Closet WalkIn",
+      "width_m": 1.71,
+      "depth_m": 1.96,
+      "area_m2": 3.36,
+      "polygon_svg": [
+        [
+          520.87,
+          644.56
+        ],
+        [
+          692.22,
+          644.9
+        ],
+        [
+          692.22,
+          840.81
+        ],
+        [
+          520.87,
+          840.81
+        ],
+        [
+          520.87,
+          644.56
+        ],
+        [
+          520.87,
+          644.56
+        ]
+      ],
+      "centroid_svg": [
+        606.5202401230794,
+        742.7699754351966
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "ET",
+      "name": "Entrance hall",
+      "category": "Space Entry Lobby",
+      "width_m": 5.77,
+      "depth_m": 3.13,
+      "area_m2": 13.52,
+      "polygon_svg": [
+        [
+          1098.31,
+          315.96
+        ],
+        [
+          905.53,
+          316.06
+        ],
+        [
+          905.53,
+          435.32
+        ],
+        [
+          520.88,
+          435.32
+        ],
+        [
+          520.87,
+          629.56
+        ],
+        [
+          1098.31,
+          629.56
+        ],
+        [
+          1098.31,
+          315.96
+        ],
+        [
+          1098.31,
+          315.96
+        ]
+      ],
+      "centroid_svg": [
+        842.3233609102873,
+        505.7616681398446
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    },
+    {
+      "code": "OH",
+      "name": "Living room",
+      "category": "Space LivingRoom",
+      "width_m": 6.53,
+      "depth_m": 3.88,
+      "area_m2": 25.34,
+      "polygon_svg": [
+        [
+          237.53,
+          47.35
+        ],
+        [
+          237.53,
+          435.32
+        ],
+        [
+          890.53,
+          435.32
+        ],
+        [
+          890.53,
+          47.43
+        ],
+        [
+          237.53,
+          47.35
+        ],
+        [
+          237.53,
+          47.35
+        ]
+      ],
+      "centroid_svg": [
+        564.0187780441488,
+        241.35499931259076
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "H",
+      "name": "H",
+      "category": "Space Room",
+      "width_m": 4.64,
+      "depth_m": 3.9,
+      "area_m2": 18.1,
+      "polygon_svg": [
+        [
+          505.87,
+          840.71
+        ],
+        [
+          41.92,
+          840.12
+        ],
+        [
+          41.92,
+          450.32
+        ],
+        [
+          505.88,
+          450.32
+        ]
+      ],
+      "centroid_svg": [
+        273.95597644799716,
+        645.3668370417795
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "H",
+      "name": "H",
+      "category": "Space Room",
+      "width_m": 4.07,
+      "depth_m": 3.9,
+      "area_m2": 15.88,
+      "polygon_svg": [
+        [
+          1520.68,
+          840.1
+        ],
+        [
+          1113.31,
+          840.1
+        ],
+        [
+          1113.31,
+          450.32
+        ],
+        [
+          1520.68,
+          450.32
+        ]
+      ],
+      "centroid_svg": [
+        1316.995,
+        645.2099999999999
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "K",
+      "name": "Kitchen",
+      "category": "Space Kitchen",
+      "width_m": 4.07,
+      "depth_m": 3.88,
+      "area_m2": 15.81,
+      "polygon_svg": [
+        [
+          1520.68,
+          435.32
+        ],
+        [
+          1113.31,
+          435.32
+        ],
+        [
+          1113.31,
+          47.35
+        ],
+        [
+          1520.68,
+          47.35
+        ]
+      ],
+      "centroid_svg": [
+        1316.995,
+        241.335
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "PSH",
+      "name": "Shower room",
+      "category": "Space Bath Shower",
+      "width_m": 1.93,
+      "depth_m": 2.54,
+      "area_m2": 4.89,
+      "polygon_svg": [
+        [
+          1098.31,
+          300.96
+        ],
+        [
+          905.53,
+          300.96
+        ],
+        [
+          905.53,
+          47.35
+        ],
+        [
+          1098.31,
+          47.35
+        ]
+      ],
+      "centroid_svg": [
+        1001.9200000000002,
+        174.155
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    }
+  ],
+  "warnings": [],
+  "outputs": [
+    {
+      "source_png": "F1_original.png",
+      "output_png": "F1_original_annotated.png",
+      "png_size": [
+        1293,
+        780
+      ],
+      "fit_scale": 0.81267,
+      "fit_trustworthy": false
+    },
+    {
+      "source_png": "F1_scaled.png",
+      "output_png": "F1_scaled_annotated.png",
+      "png_size": [
+        1559,
+        941
+      ],
+      "fit_scale": 0.98002,
+      "fit_trustworthy": false
+    }
+  ],
+  "status": "ok"
+}

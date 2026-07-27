@@ -1,0 +1,297 @@
+{
+  "plan_id": "5014",
+  "px_per_m": 99.987,
+  "scale_source": "room_label_crosscheck",
+  "scale_confidence": 0.0034,
+  "viewbox": [
+    1077.633071899414,
+    1025.120018005371
+  ],
+  "wall_bbox_svg": [
+    0.0,
+    0.0,
+    1014.88,
+    777.07
+  ],
+  "overall_width_m": 10.15,
+  "overall_depth_m": 7.77,
+  "internal_area_m2": 37.33,
+  "rooms": [
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 1.98,
+      "depth_m": 1.99,
+      "area_m2": 3.95,
+      "polygon_svg": [
+        [
+          977.95,
+          524.7
+        ],
+        [
+          779.63,
+          524.7
+        ],
+        [
+          779.63,
+          325.46
+        ],
+        [
+          977.95,
+          325.46
+        ]
+      ],
+      "centroid_svg": [
+        878.7900000000003,
+        425.08000000000015
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "PESUH",
+      "name": "PESUH",
+      "category": "Space Bath Shower",
+      "width_m": 2.53,
+      "depth_m": 2.0,
+      "area_m2": 5.03,
+      "polygon_svg": [
+        [
+          977.95,
+          739.35
+        ],
+        [
+          724.61,
+          739.35
+        ],
+        [
+          724.61,
+          545.76
+        ],
+        [
+          779.63,
+          545.76
+        ],
+        [
+          779.63,
+          539.7
+        ],
+        [
+          977.95,
+          539.7
+        ]
+      ],
+      "centroid_svg": [
+        851.9380047276209,
+        640.1673110892502
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "KUISTI",
+      "name": "KUISTI",
+      "category": "Space Outdoor Porch",
+      "width_m": 6.37,
+      "depth_m": 2.32,
+      "area_m2": 14.77,
+      "polygon_svg": [
+        [
+          340.82,
+          754.35
+        ],
+        [
+          340.82,
+          986.14
+        ],
+        [
+          977.95,
+          986.14
+        ],
+        [
+          977.95,
+          754.35
+        ],
+        [
+          340.82,
+          754.35
+        ]
+      ],
+      "centroid_svg": [
+        659.3849999999999,
+        870.2449999999998
+      ],
+      "is_rectangular": true,
+      "outdoor": true
+    },
+    {
+      "code": "TUPA",
+      "name": "TUPA",
+      "category": "Space Room",
+      "width_m": 4.09,
+      "depth_m": 4.29,
+      "area_m2": 15.85,
+      "polygon_svg": [
+        [
+          689.45,
+          325.46
+        ],
+        [
+          764.63,
+          325.46
+        ],
+        [
+          764.63,
+          421.1
+        ],
+        [
+          653.73,
+          421.1
+        ],
+        [
+          653.73,
+          436.1
+        ],
+        [
+          764.63,
+          436.1
+        ],
+        [
+          764.63,
+          530.76
+        ],
+        [
+          689.24,
+          530.76
+        ],
+        [
+          689.24,
+          545.76
+        ],
+        [
+          709.61,
+          545.76
+        ],
+        [
+          709.61,
+          739.35
+        ],
+        [
+          355.82,
+          739.35
+        ],
+        [
+          355.82,
+          325.46
+        ],
+        [
+          509.45,
+          325.46
+        ],
+        [
+          509.45,
+          310.46
+        ],
+        [
+          689.45,
+          310.46
+        ]
+      ],
+      "centroid_svg": [
+        546.2491395385031,
+        522.3947819749548
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    },
+    {
+      "code": "KK",
+      "name": "KK",
+      "category": "Space Kitchen Kitchenette",
+      "width_m": 2.07,
+      "depth_m": 2.01,
+      "area_m2": 4.16,
+      "polygon_svg": [
+        [
+          977.95,
+          310.46
+        ],
+        [
+          770.63,
+          310.46
+        ],
+        [
+          770.63,
+          109.62
+        ],
+        [
+          977.95,
+          109.62
+        ]
+      ],
+      "centroid_svg": [
+        874.2899999999998,
+        210.03999999999996
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "MH",
+      "name": "Bedroom",
+      "category": "Space Bedroom",
+      "width_m": 4.15,
+      "depth_m": 2.01,
+      "area_m2": 8.33,
+      "polygon_svg": [
+        [
+          770.63,
+          310.46
+        ],
+        [
+          355.82,
+          310.46
+        ],
+        [
+          355.82,
+          109.62
+        ],
+        [
+          770.63,
+          109.62
+        ]
+      ],
+      "centroid_svg": [
+        563.225,
+        210.04
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    }
+  ],
+  "warnings": [],
+  "outputs": [
+    {
+      "source_png": "F1_original.png",
+      "output_png": "F1_original_annotated.png",
+      "png_size": [
+        1047,
+        595
+      ],
+      "fit_scale": 1.03066,
+      "fit_trustworthy": false
+    },
+    {
+      "source_png": "F1_scaled.png",
+      "output_png": "F1_scaled_annotated.png",
+      "png_size": [
+        1947,
+        1107
+      ],
+      "fit_scale": 1.91747,
+      "fit_trustworthy": false
+    }
+  ],
+  "status": "ok"
+}

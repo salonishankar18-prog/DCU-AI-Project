@@ -1,0 +1,183 @@
+{
+  "plan_id": "5133",
+  "px_per_m": 100.0,
+  "scale_source": "convention_fallback_100",
+  "scale_confidence": 1.0,
+  "viewbox": [
+    943.3300323486328,
+    628.4599990844727
+  ],
+  "wall_bbox_svg": [
+    0.0,
+    0.0,
+    943.33,
+    535.88
+  ],
+  "overall_width_m": 9.43,
+  "overall_depth_m": 5.36,
+  "internal_area_m2": 28.13,
+  "rooms": [
+    {
+      "code": "TUPAK",
+      "name": "TUPAK",
+      "category": "Space Kitchen Open",
+      "width_m": 4.95,
+      "depth_m": 3.25,
+      "area_m2": 17.66,
+      "polygon_svg": [
+        [
+          619.35,
+          276.52
+        ],
+        [
+          619.47,
+          276.52
+        ],
+        [
+          617.47,
+          438.45
+        ],
+        [
+          425.65,
+          438.45
+        ],
+        [
+          425.65,
+          398.17
+        ],
+        [
+          325.17,
+          398.17
+        ],
+        [
+          325.17,
+          438.45
+        ],
+        [
+          124.17,
+          438.45
+        ],
+        [
+          124.17,
+          73.33
+        ],
+        [
+          619.35,
+          73.33
+        ]
+      ],
+      "centroid_svg": [
+        371.47709314261266,
+        252.06114380137592
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    },
+    {
+      "code": "ET",
+      "name": "Entrance hall",
+      "category": "Space Entry Lobby",
+      "width_m": 3.0,
+      "depth_m": 2.37,
+      "area_m2": 5.98,
+      "polygon_svg": [
+        [
+          918.33,
+          513.88
+        ],
+        [
+          769.7,
+          513.88
+        ],
+        [
+          769.7,
+          438.45
+        ],
+        [
+          617.47,
+          438.45
+        ],
+        [
+          619.47,
+          276.52
+        ],
+        [
+          918.33,
+          276.52
+        ]
+      ],
+      "centroid_svg": [
+        782.5833785088148,
+        379.82006511305923
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    },
+    {
+      "code": "WC",
+      "name": "Toilet",
+      "category": "Space Bath",
+      "width_m": 2.89,
+      "depth_m": 1.92,
+      "area_m2": 4.49,
+      "polygon_svg": [
+        [
+          759.34,
+          140.33
+        ],
+        [
+          918.33,
+          140.33
+        ],
+        [
+          918.33,
+          265.52
+        ],
+        [
+          629.36,
+          265.52
+        ],
+        [
+          629.36,
+          73.33
+        ],
+        [
+          759.34,
+          73.33
+        ]
+      ],
+      "centroid_svg": [
+        758.4211882387915,
+        184.28041617468605
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    }
+  ],
+  "warnings": [
+    "no usable room labels \u2014 assumed 100 px/m; treat as estimated"
+  ],
+  "outputs": [
+    {
+      "source_png": "F1_original.png",
+      "output_png": "F1_original_annotated.png",
+      "png_size": [
+        1207,
+        749
+      ],
+      "fit_scale": 1.04841,
+      "fit_trustworthy": true
+    },
+    {
+      "source_png": "F1_scaled.png",
+      "output_png": "F1_scaled_annotated.png",
+      "png_size": [
+        1059,
+        657
+      ],
+      "fit_scale": 0.91908,
+      "fit_trustworthy": true
+    }
+  ],
+  "status": "estimated"
+}

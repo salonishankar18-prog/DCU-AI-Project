@@ -1,0 +1,301 @@
+{
+  "plan_id": "4039",
+  "px_per_m": 100.097,
+  "scale_source": "room_label_crosscheck",
+  "scale_confidence": 0.004,
+  "viewbox": [
+    1280.3299865722656,
+    1112.1600341796875
+  ],
+  "wall_bbox_svg": [
+    0.0,
+    0.0,
+    1280.33,
+    1112.16
+  ],
+  "overall_width_m": 12.79,
+  "overall_depth_m": 11.11,
+  "internal_area_m2": 38.83,
+  "rooms": [
+    {
+      "code": "ULKOTILA",
+      "name": "Outdoor",
+      "category": "Space Outdoor",
+      "width_m": 1.22,
+      "depth_m": 2.74,
+      "area_m2": 3.34,
+      "polygon_svg": [
+        [
+          323.13,
+          821.58
+        ],
+        [
+          323.13,
+          547.81
+        ],
+        [
+          200.74,
+          547.81
+        ],
+        [
+          200.74,
+          821.58
+        ],
+        [
+          323.13,
+          821.58
+        ],
+        [
+          323.13,
+          821.58
+        ]
+      ],
+      "centroid_svg": [
+        261.935,
+        684.6949999999999
+      ],
+      "is_rectangular": true,
+      "outdoor": true
+    },
+    {
+      "code": "OH",
+      "name": "Living room",
+      "category": "Space LivingRoom",
+      "width_m": 3.4,
+      "depth_m": 5.33,
+      "area_m2": 15.76,
+      "polygon_svg": [
+        [
+          614.03,
+          838.07
+        ],
+        [
+          691.67,
+          838.07
+        ],
+        [
+          691.71,
+          1085.16
+        ],
+        [
+          388.1,
+          1085.16
+        ],
+        [
+          388.1,
+          1079.67
+        ],
+        [
+          352.13,
+          1079.67
+        ],
+        [
+          352.13,
+          568.6
+        ],
+        [
+          385.73,
+          568.6
+        ],
+        [
+          385.73,
+          552.6
+        ],
+        [
+          614.03,
+          552.6
+        ]
+      ],
+      "centroid_svg": [
+        504.2384581018736,
+        836.7735694680198
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    },
+    {
+      "code": "K",
+      "name": "Kitchen",
+      "category": "Space Kitchen",
+      "width_m": 3.17,
+      "depth_m": 2.85,
+      "area_m2": 9.0,
+      "polygon_svg": [
+        [
+          905.71,
+          563.6
+        ],
+        [
+          929.45,
+          563.6
+        ],
+        [
+          929.45,
+          631.45
+        ],
+        [
+          931.53,
+          631.45
+        ],
+        [
+          931.53,
+          838.07
+        ],
+        [
+          614.03,
+          838.07
+        ],
+        [
+          614.03,
+          552.6
+        ],
+        [
+          905.71,
+          552.6
+        ]
+      ],
+      "centroid_svg": [
+        772.0741174980236,
+        695.9200824931261
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "ALKOVI",
+      "name": "ALKOVI",
+      "category": "Space Alcove",
+      "width_m": 2.4,
+      "depth_m": 2.47,
+      "area_m2": 5.91,
+      "polygon_svg": [
+        [
+          931.53,
+          1085.16
+        ],
+        [
+          691.71,
+          1085.16
+        ],
+        [
+          691.67,
+          838.07
+        ],
+        [
+          931.53,
+          838.07
+        ]
+      ],
+      "centroid_svg": [
+        811.6099997220366,
+        961.6115659050473
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "ET",
+      "name": "Entrance hall",
+      "category": "Space Entry Lobby",
+      "width_m": 1.55,
+      "depth_m": 2.64,
+      "area_m2": 3.94,
+      "polygon_svg": [
+        [
+          1086.47,
+          895.51
+        ],
+        [
+          943.53,
+          895.51
+        ],
+        [
+          943.53,
+          777.64
+        ],
+        [
+          931.53,
+          777.64
+        ],
+        [
+          931.53,
+          631.45
+        ],
+        [
+          1086.47,
+          631.45
+        ]
+      ],
+      "centroid_svg": [
+        1011.5593049147423,
+        760.862504648901
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    },
+    {
+      "code": "SH",
+      "name": "SH",
+      "category": "Space Bath Shower",
+      "width_m": 1.66,
+      "depth_m": 2.64,
+      "area_m2": 4.21,
+      "polygon_svg": [
+        [
+          1263.33,
+          844.03
+        ],
+        [
+          1231.61,
+          844.03
+        ],
+        [
+          1231.61,
+          895.51
+        ],
+        [
+          1097.47,
+          895.51
+        ],
+        [
+          1097.47,
+          631.45
+        ],
+        [
+          1263.33,
+          631.45
+        ]
+      ],
+      "centroid_svg": [
+        1177.802486910484,
+        759.3635594709294
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    }
+  ],
+  "warnings": [],
+  "outputs": [
+    {
+      "source_png": "F1_original.png",
+      "output_png": "F1_original_annotated.png",
+      "png_size": [
+        2480,
+        3507
+      ],
+      "fit_scale": 1.81125,
+      "fit_trustworthy": true
+    },
+    {
+      "source_png": "F1_scaled.png",
+      "output_png": "F1_scaled_annotated.png",
+      "png_size": [
+        1554,
+        2197
+      ],
+      "fit_scale": 0.92086,
+      "fit_trustworthy": true
+    }
+  ],
+  "status": "ok"
+}

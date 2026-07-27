@@ -1,0 +1,353 @@
+{
+  "plan_id": "5073",
+  "px_per_m": 100.084,
+  "scale_source": "room_label_crosscheck",
+  "scale_confidence": 0.0067,
+  "viewbox": [
+    1110.0399856567383,
+    1102.9499816894531
+  ],
+  "wall_bbox_svg": [
+    0.0,
+    0.0,
+    1110.04,
+    1015.5
+  ],
+  "overall_width_m": 11.09,
+  "overall_depth_m": 10.15,
+  "internal_area_m2": 73.73,
+  "rooms": [
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 2.3,
+      "depth_m": 1.2,
+      "area_m2": 2.75,
+      "polygon_svg": [
+        [
+          744.87,
+          594.86
+        ],
+        [
+          515.31,
+          594.86
+        ],
+        [
+          515.31,
+          504.75
+        ],
+        [
+          515.4,
+          504.75
+        ],
+        [
+          515.4,
+          474.75
+        ],
+        [
+          744.87,
+          474.75
+        ]
+      ],
+      "centroid_svg": [
+        630.1012363906824,
+        534.8094123901357
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "ET",
+      "name": "Entrance hall",
+      "category": "Space Entry Lobby",
+      "width_m": 2.29,
+      "depth_m": 1.96,
+      "area_m2": 4.48,
+      "polygon_svg": [
+        [
+          745.0,
+          803.0
+        ],
+        [
+          556.0,
+          804.0
+        ],
+        [
+          516.31,
+          804.79
+        ],
+        [
+          515.31,
+          607.86
+        ],
+        [
+          744.87,
+          607.86
+        ]
+      ],
+      "centroid_svg": [
+        630.2274920446147,
+        705.6966519651488
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "OH",
+      "name": "Living room",
+      "category": "Space LivingRoom",
+      "width_m": 4.32,
+      "depth_m": 4.02,
+      "area_m2": 17.34,
+      "polygon_svg": [
+        [
+          500.31,
+          459.75
+        ],
+        [
+          68.68,
+          459.75
+        ],
+        [
+          66.76,
+          57.76
+        ],
+        [
+          499.31,
+          57.76
+        ]
+      ],
+      "centroid_svg": [
+        283.7647409490306,
+        258.68367404167344
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "MH",
+      "name": "Bedroom",
+      "category": "Space Bedroom",
+      "width_m": 5.8,
+      "depth_m": 4.02,
+      "area_m2": 23.18,
+      "polygon_svg": [
+        [
+          1095.04,
+          459.75
+        ],
+        [
+          861.02,
+          459.75
+        ],
+        [
+          861.02,
+          444.75
+        ],
+        [
+          790.48,
+          444.75
+        ],
+        [
+          790.48,
+          459.75
+        ],
+        [
+          515.31,
+          459.75
+        ],
+        [
+          514.31,
+          57.76
+        ],
+        [
+          1095.04,
+          57.76
+        ]
+      ],
+      "centroid_svg": [
+        804.830026835509,
+        257.8152319439433
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "K",
+      "name": "Kitchen",
+      "category": "Space Kitchen",
+      "width_m": 4.31,
+      "depth_m": 3.59,
+      "area_m2": 15.06,
+      "polygon_svg": [
+        [
+          363.04,
+          504.75
+        ],
+        [
+          500.31,
+          504.75
+        ],
+        [
+          501.31,
+          804.79
+        ],
+        [
+          501.0,
+          813.0
+        ],
+        [
+          501.28,
+          817.86
+        ],
+        [
+          501.31,
+          834.13
+        ],
+        [
+          70.68,
+          834.13
+        ],
+        [
+          68.68,
+          474.75
+        ],
+        [
+          363.04,
+          474.75
+        ]
+      ],
+      "centroid_svg": [
+        281.24264241749233,
+        658.8738357412859
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    },
+    {
+      "code": "KUISTI",
+      "name": "KUISTI",
+      "category": "Space Outdoor Porch",
+      "width_m": 5.06,
+      "depth_m": 1.82,
+      "area_m2": 9.47,
+      "polygon_svg": [
+        [
+          1022.61,
+          1000.5
+        ],
+        [
+          516.31,
+          1000.5
+        ],
+        [
+          516.31,
+          819.79
+        ],
+        [
+          841.04,
+          817.86
+        ],
+        [
+          841.0,
+          803.0
+        ],
+        [
+          1022.61,
+          802.86
+        ]
+      ],
+      "centroid_svg": [
+        774.5824683221539,
+        906.6564409805833
+      ],
+      "is_rectangular": false,
+      "outdoor": true
+    },
+    {
+      "code": "MH",
+      "name": "Bedroom",
+      "category": "Space Bedroom",
+      "width_m": 3.35,
+      "depth_m": 3.28,
+      "area_m2": 10.92,
+      "polygon_svg": [
+        [
+          790.48,
+          481.24
+        ],
+        [
+          861.02,
+          481.24
+        ],
+        [
+          861.02,
+          474.75
+        ],
+        [
+          1095.04,
+          474.75
+        ],
+        [
+          1095.04,
+          801.61
+        ],
+        [
+          1022.61,
+          801.61
+        ],
+        [
+          1022.61,
+          802.86
+        ],
+        [
+          760.0,
+          803.0
+        ],
+        [
+          759.87,
+          607.86
+        ],
+        [
+          759.87,
+          474.75
+        ],
+        [
+          790.48,
+          474.75
+        ]
+      ],
+      "centroid_svg": [
+        927.7777639222751,
+        639.3586418132743
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    }
+  ],
+  "warnings": [],
+  "outputs": [
+    {
+      "source_png": "F1_original.png",
+      "output_png": "F1_original_annotated.png",
+      "png_size": [
+        843,
+        817
+      ],
+      "fit_scale": 0.70448,
+      "fit_trustworthy": true
+    },
+    {
+      "source_png": "F1_scaled.png",
+      "output_png": "F1_scaled_annotated.png",
+      "png_size": [
+        1143,
+        1108
+      ],
+      "fit_scale": 0.95492,
+      "fit_trustworthy": true
+    }
+  ],
+  "status": "ok"
+}

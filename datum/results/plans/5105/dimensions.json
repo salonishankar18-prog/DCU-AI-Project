@@ -1,0 +1,697 @@
+{
+  "plan_id": "5105",
+  "px_per_m": 100.072,
+  "scale_source": "room_label_crosscheck",
+  "scale_confidence": 0.0076,
+  "viewbox": [
+    1349.6922607421875,
+    1366.7099380493164
+  ],
+  "wall_bbox_svg": [
+    92.44,
+    108.52,
+    1337.27,
+    1366.71
+  ],
+  "overall_width_m": 12.44,
+  "overall_depth_m": 12.57,
+  "internal_area_m2": 81.05,
+  "rooms": [
+    {
+      "code": "ULKOTILA",
+      "name": "Outdoor",
+      "category": "Space Outdoor",
+      "width_m": 0.85,
+      "depth_m": 1.14,
+      "area_m2": 0.97,
+      "polygon_svg": [
+        [
+          440.11,
+          1098.07
+        ],
+        [
+          355.05,
+          1098.07
+        ],
+        [
+          355.05,
+          1211.9
+        ],
+        [
+          440.11,
+          1211.9
+        ],
+        [
+          440.11,
+          1098.07
+        ],
+        [
+          440.11,
+          1098.07
+        ]
+      ],
+      "centroid_svg": [
+        397.5800000000003,
+        1154.9850000000013
+      ],
+      "is_rectangular": true,
+      "outdoor": true
+    },
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 2.1,
+      "depth_m": 2.14,
+      "area_m2": 4.49,
+      "polygon_svg": [
+        [
+          335.76,
+          1074.42
+        ],
+        [
+          127.67,
+          1074.42
+        ],
+        [
+          127.67,
+          860.02
+        ],
+        [
+          338.76,
+          860.02
+        ]
+      ],
+      "centroid_svg": [
+        232.4667892075004,
+        966.9642626079491
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 2.12,
+      "depth_m": 2.1,
+      "area_m2": 4.25,
+      "polygon_svg": [
+        [
+          338.76,
+          846.02
+        ],
+        [
+          279.13,
+          846.02
+        ],
+        [
+          279.13,
+          860.02
+        ],
+        [
+          198.75,
+          860.02
+        ],
+        [
+          198.75,
+          846.23
+        ],
+        [
+          127.67,
+          846.23
+        ],
+        [
+          128.0,
+          651.0
+        ],
+        [
+          340.76,
+          650.03
+        ]
+      ],
+      "centroid_svg": [
+        233.99445255058438,
+        750.9460306171347
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    },
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 3.17,
+      "depth_m": 3.73,
+      "area_m2": 9.96,
+      "polygon_svg": [
+        [
+          476.95,
+          664.03
+        ],
+        [
+          655.52,
+          664.03
+        ],
+        [
+          655.52,
+          848.37
+        ],
+        [
+          583.37,
+          848.37
+        ],
+        [
+          583.37,
+          860.69
+        ],
+        [
+          655.52,
+          860.69
+        ],
+        [
+          655.52,
+          974.01
+        ],
+        [
+          501.33,
+          974.01
+        ],
+        [
+          501.33,
+          1037.44
+        ],
+        [
+          457.26,
+          1037.44
+        ],
+        [
+          457.26,
+          974.01
+        ],
+        [
+          355.05,
+          974.01
+        ],
+        [
+          355.05,
+          846.02
+        ],
+        [
+          338.76,
+          846.02
+        ],
+        [
+          340.76,
+          650.03
+        ],
+        [
+          476.95,
+          650.03
+        ]
+      ],
+      "centroid_svg": [
+        497.2684117378059,
+        819.0956232068561
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    },
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 0.04,
+      "depth_m": 2.14,
+      "area_m2": 0.08,
+      "polygon_svg": [
+        [
+          341.05,
+          1074.42
+        ],
+        [
+          335.76,
+          1074.42
+        ],
+        [
+          338.76,
+          860.02
+        ],
+        [
+          341.05,
+          860.02
+        ]
+      ],
+      "centroid_svg": [
+        339.05605540896613,
+        981.3624802110751
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    },
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 5.28,
+      "depth_m": 3.37,
+      "area_m2": 17.76,
+      "polygon_svg": [
+        [
+          655.52,
+          650.0
+        ],
+        [
+          128.0,
+          651.0
+        ],
+        [
+          127.67,
+          313.54
+        ],
+        [
+          655.52,
+          313.54
+        ]
+      ],
+      "centroid_svg": [
+        391.54694927359793,
+        482.0025892821725
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 0.14,
+      "depth_m": 1.2,
+      "area_m2": 0.17,
+      "polygon_svg": [
+        [
+          355.05,
+          650.57
+        ],
+        [
+          355.05,
+          770.67
+        ],
+        [
+          341.05,
+          770.67
+        ],
+        [
+          341.05,
+          650.57
+        ]
+      ],
+      "centroid_svg": [
+        348.0500000000004,
+        710.6200000000008
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 1.98,
+      "depth_m": 2.52,
+      "area_m2": 4.99,
+      "polygon_svg": [
+        [
+          655.52,
+          1349.71
+        ],
+        [
+          457.11,
+          1349.71
+        ],
+        [
+          457.11,
+          1098.07
+        ],
+        [
+          655.52,
+          1098.07
+        ]
+      ],
+      "centroid_svg": [
+        556.3150000000002,
+        1223.8899999999999
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 1.4,
+      "depth_m": 0.86,
+      "area_m2": 1.21,
+      "polygon_svg": [
+        [
+          655.52,
+          1074.42
+        ],
+        [
+          515.33,
+          1074.42
+        ],
+        [
+          515.33,
+          988.01
+        ],
+        [
+          655.52,
+          988.01
+        ]
+      ],
+      "centroid_svg": [
+        585.425,
+        1031.2150000000001
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 0.85,
+      "depth_m": 0.86,
+      "area_m2": 0.73,
+      "polygon_svg": [
+        [
+          440.11,
+          1074.42
+        ],
+        [
+          355.05,
+          1074.42
+        ],
+        [
+          355.05,
+          988.01
+        ],
+        [
+          440.11,
+          988.01
+        ]
+      ],
+      "centroid_svg": [
+        397.58,
+        1031.215
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "ULKOTILA",
+      "name": "Outdoor",
+      "category": "Space Outdoor",
+      "width_m": 3.12,
+      "depth_m": 1.76,
+      "area_m2": 5.5,
+      "polygon_svg": [
+        [
+          1001.24,
+          288.97
+        ],
+        [
+          1001.24,
+          112.52
+        ],
+        [
+          1313.47,
+          112.52
+        ],
+        [
+          1313.47,
+          288.97
+        ],
+        [
+          1001.24,
+          288.97
+        ],
+        [
+          1001.24,
+          288.97
+        ]
+      ],
+      "centroid_svg": [
+        1157.3549999999998,
+        200.74499999999998
+      ],
+      "is_rectangular": true,
+      "outdoor": true
+    },
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 2.17,
+      "depth_m": 4.29,
+      "area_m2": 9.3,
+      "polygon_svg": [
+        [
+          987.24,
+          741.91
+        ],
+        [
+          770.22,
+          741.91
+        ],
+        [
+          770.22,
+          312.98
+        ],
+        [
+          987.24,
+          312.98
+        ]
+      ],
+      "centroid_svg": [
+        878.73,
+        527.445
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 2.99,
+      "depth_m": 3.36,
+      "area_m2": 10.02,
+      "polygon_svg": [
+        [
+          1300.27,
+          648.69
+        ],
+        [
+          1001.24,
+          648.69
+        ],
+        [
+          1001.24,
+          312.98
+        ],
+        [
+          1300.27,
+          312.98
+        ]
+      ],
+      "centroid_svg": [
+        1150.7549999999999,
+        480.83500000000004
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 2.99,
+      "depth_m": 2.12,
+      "area_m2": 6.34,
+      "polygon_svg": [
+        [
+          1300.27,
+          1075.51
+        ],
+        [
+          1001.24,
+          1075.51
+        ],
+        [
+          1001.24,
+          863.03
+        ],
+        [
+          1300.27,
+          863.03
+        ]
+      ],
+      "centroid_svg": [
+        1150.7549999999992,
+        969.2699999999996
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 2.99,
+      "depth_m": 1.87,
+      "area_m2": 5.57,
+      "polygon_svg": [
+        [
+          1300.27,
+          849.24
+        ],
+        [
+          1001.24,
+          849.24
+        ],
+        [
+          1001.24,
+          662.69
+        ],
+        [
+          1300.27,
+          662.69
+        ]
+      ],
+      "centroid_svg": [
+        1150.7550000000006,
+        755.9650000000001
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 2.17,
+      "depth_m": 1.48,
+      "area_m2": 3.1,
+      "polygon_svg": [
+        [
+          987.24,
+          849.24
+        ],
+        [
+          969.24,
+          849.24
+        ],
+        [
+          969.24,
+          903.7
+        ],
+        [
+          770.22,
+          903.7
+        ],
+        [
+          770.22,
+          755.91
+        ],
+        [
+          987.24,
+          755.91
+        ]
+      ],
+      "centroid_svg": [
+        875.5927237360112,
+        828.3337810585963
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    },
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 2.05,
+      "depth_m": 1.5,
+      "area_m2": 3.08,
+      "polygon_svg": [
+        [
+          981.55,
+          1075.51
+        ],
+        [
+          776.38,
+          1075.51
+        ],
+        [
+          776.38,
+          925.29
+        ],
+        [
+          981.55,
+          925.29
+        ]
+      ],
+      "centroid_svg": [
+        878.9650000000009,
+        1000.4000000000013
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    }
+  ],
+  "warnings": [],
+  "outputs": [
+    {
+      "source_png": "F1_original.png",
+      "output_png": "F1_original_annotated.png",
+      "png_size": [
+        524,
+        540
+      ],
+      "fit_scale": 0.36712,
+      "fit_trustworthy": true
+    },
+    {
+      "source_png": "F1_scaled.png",
+      "output_png": "F1_scaled_annotated.png",
+      "png_size": [
+        1422,
+        1465
+      ],
+      "fit_scale": 1.00174,
+      "fit_trustworthy": true
+    },
+    {
+      "source_png": "F2_original.png",
+      "output_png": "F2_original_annotated.png",
+      "png_size": [
+        524,
+        540
+      ],
+      "fit_scale": 0.36712,
+      "fit_trustworthy": true
+    },
+    {
+      "source_png": "F2_scaled.png",
+      "output_png": "F2_scaled_annotated.png",
+      "png_size": [
+        1422,
+        1465
+      ],
+      "fit_scale": 1.00174,
+      "fit_trustworthy": true
+    }
+  ],
+  "status": "ok"
+}

@@ -1,0 +1,305 @@
+{
+  "plan_id": "4017",
+  "px_per_m": 100.047,
+  "scale_source": "room_label_crosscheck",
+  "scale_confidence": 0.0021,
+  "viewbox": [
+    1162.6200341880322,
+    961.2000170648098
+  ],
+  "wall_bbox_svg": [
+    0.0,
+    -0.38,
+    1162.62,
+    891.68
+  ],
+  "overall_width_m": 11.62,
+  "overall_depth_m": 8.92,
+  "internal_area_m2": 54.18,
+  "rooms": [
+    {
+      "code": "K",
+      "name": "Kitchen",
+      "category": "Space Kitchen",
+      "width_m": 3.27,
+      "depth_m": 2.77,
+      "area_m2": 8.51,
+      "polygon_svg": [
+        [
+          747.69,
+          259.72
+        ],
+        [
+          760.69,
+          259.72
+        ],
+        [
+          760.69,
+          404.25
+        ],
+        [
+          747.69,
+          404.25
+        ],
+        [
+          747.69,
+          464.25
+        ],
+        [
+          614.71,
+          464.25
+        ],
+        [
+          614.71,
+          477.81
+        ],
+        [
+          493.36,
+          477.81
+        ],
+        [
+          493.36,
+          445.21
+        ],
+        [
+          433.19,
+          445.21
+        ],
+        [
+          433.19,
+          200.91
+        ],
+        [
+          747.69,
+          200.91
+        ]
+      ],
+      "centroid_svg": [
+        595.0579840317306,
+        333.5983527782914
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    },
+    {
+      "code": "OH",
+      "name": "Living room",
+      "category": "Space LivingRoom",
+      "width_m": 3.78,
+      "depth_m": 4.9,
+      "area_m2": 18.52,
+      "polygon_svg": [
+        [
+          1138.62,
+          691.4
+        ],
+        [
+          760.69,
+          691.4
+        ],
+        [
+          760.69,
+          200.91
+        ],
+        [
+          1138.62,
+          200.91
+        ]
+      ],
+      "centroid_svg": [
+        949.655,
+        446.15500000000003
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "ET",
+      "name": "Entrance hall",
+      "category": "Space Entry Lobby",
+      "width_m": 4.66,
+      "depth_m": 3.76,
+      "area_m2": 11.91,
+      "polygon_svg": [
+        [
+          747.69,
+          691.4
+        ],
+        [
+          547.95,
+          691.4
+        ],
+        [
+          547.95,
+          867.68
+        ],
+        [
+          408.27,
+          867.68
+        ],
+        [
+          408.27,
+          691.4
+        ],
+        [
+          281.68,
+          691.4
+        ],
+        [
+          281.68,
+          491.81
+        ],
+        [
+          628.71,
+          491.81
+        ],
+        [
+          628.71,
+          478.25
+        ],
+        [
+          747.69,
+          478.25
+        ]
+      ],
+      "centroid_svg": [
+        509.4803879209592,
+        628.9689234584927
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    },
+    {
+      "code": "MH",
+      "name": "Bedroom",
+      "category": "Space Bedroom",
+      "width_m": 3.97,
+      "depth_m": 2.77,
+      "area_m2": 10.98,
+      "polygon_svg": [
+        [
+          421.19,
+          477.81
+        ],
+        [
+          24.21,
+          477.81
+        ],
+        [
+          24.21,
+          200.91
+        ],
+        [
+          421.19,
+          200.91
+        ]
+      ],
+      "centroid_svg": [
+        222.70000000000002,
+        339.36
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 2.44,
+      "depth_m": 2.0,
+      "area_m2": 4.26,
+      "polygon_svg": [
+        [
+          268.68,
+          691.4
+        ],
+        [
+          179.33,
+          691.4
+        ],
+        [
+          179.33,
+          651.53
+        ],
+        [
+          24.21,
+          651.53
+        ],
+        [
+          24.21,
+          491.81
+        ],
+        [
+          268.68,
+          491.81
+        ]
+      ],
+      "centroid_svg": [
+        152.9294910706925,
+        580.0134732645664
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    },
+    {
+      "code": "PARVEKE",
+      "name": "Balcony",
+      "category": "Space Outdoor Balcony",
+      "width_m": 3.45,
+      "depth_m": 1.64,
+      "area_m2": 5.67,
+      "polygon_svg": [
+        [
+          25.21,
+          176.91
+        ],
+        [
+          25.21,
+          12.62
+        ],
+        [
+          370.67,
+          12.62
+        ],
+        [
+          370.67,
+          176.91
+        ],
+        [
+          25.21,
+          176.91
+        ]
+      ],
+      "centroid_svg": [
+        197.93999999999997,
+        94.765
+      ],
+      "is_rectangular": true,
+      "outdoor": true
+    }
+  ],
+  "warnings": [],
+  "outputs": [
+    {
+      "source_png": "F1_original.png",
+      "output_png": "F1_original_annotated.png",
+      "png_size": [
+        567,
+        469
+      ],
+      "fit_scale": 0.48683,
+      "fit_trustworthy": true
+    },
+    {
+      "source_png": "F1_scaled.png",
+      "output_png": "F1_scaled_annotated.png",
+      "png_size": [
+        1163,
+        962
+      ],
+      "fit_scale": 0.99947,
+      "fit_trustworthy": true
+    }
+  ],
+  "status": "ok"
+}

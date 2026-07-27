@@ -1,0 +1,449 @@
+{
+  "plan_id": "5043",
+  "px_per_m": 100.09,
+  "scale_source": "room_label_crosscheck",
+  "scale_confidence": 0.0048,
+  "viewbox": [
+    795.2199401855469,
+    1561.5399932861328
+  ],
+  "wall_bbox_svg": [
+    0.0,
+    0.0,
+    795.22,
+    1561.54
+  ],
+  "overall_width_m": 7.95,
+  "overall_depth_m": 15.6,
+  "internal_area_m2": 51.78,
+  "rooms": [
+    {
+      "code": "ULKOTILA",
+      "name": "Outdoor",
+      "category": "Space Outdoor",
+      "width_m": 1.19,
+      "depth_m": 1.04,
+      "area_m2": 1.24,
+      "polygon_svg": [
+        [
+          388.33,
+          1164.42
+        ],
+        [
+          388.33,
+          1268.63
+        ],
+        [
+          507.26,
+          1268.63
+        ],
+        [
+          507.26,
+          1164.31
+        ],
+        [
+          388.33,
+          1164.42
+        ],
+        [
+          388.33,
+          1164.42
+        ]
+      ],
+      "centroid_svg": [
+        447.8054559695645,
+        1216.4974951645636
+      ],
+      "is_rectangular": true,
+      "outdoor": true
+    },
+    {
+      "code": "RT",
+      "name": "RT",
+      "category": "Space Dining",
+      "width_m": 2.31,
+      "depth_m": 1.85,
+      "area_m2": 4.2,
+      "polygon_svg": [
+        [
+          364.44,
+          399.09
+        ],
+        [
+          374.44,
+          399.09
+        ],
+        [
+          374.44,
+          503.44
+        ],
+        [
+          364.44,
+          503.44
+        ],
+        [
+          364.44,
+          543.22
+        ],
+        [
+          142.79,
+          543.22
+        ],
+        [
+          143.24,
+          358.08
+        ],
+        [
+          364.44,
+          358.08
+        ]
+      ],
+      "centroid_svg": [
+        256.5997601939877,
+        450.69584251219385
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "K",
+      "name": "Kitchen",
+      "category": "Space Kitchen",
+      "width_m": 2.22,
+      "depth_m": 2.72,
+      "area_m2": 5.63,
+      "polygon_svg": [
+        [
+          364.44,
+          743.73
+        ],
+        [
+          310.19,
+          743.56
+        ],
+        [
+          310.0,
+          744.0
+        ],
+        [
+          310.19,
+          815.4
+        ],
+        [
+          142.79,
+          815.4
+        ],
+        [
+          142.79,
+          543.22
+        ],
+        [
+          364.44,
+          543.22
+        ]
+      ],
+      "centroid_svg": [
+        247.8349442651449,
+        672.3862585872668
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    },
+    {
+      "code": "OH",
+      "name": "Living room",
+      "category": "Space LivingRoom",
+      "width_m": 3.99,
+      "depth_m": 3.86,
+      "area_m2": 15.35,
+      "polygon_svg": [
+        [
+          773.22,
+          743.73
+        ],
+        [
+          491.69,
+          743.73
+        ],
+        [
+          491.69,
+          743.74
+        ],
+        [
+          374.44,
+          743.73
+        ],
+        [
+          374.44,
+          358.08
+        ],
+        [
+          773.22,
+          358.08
+        ]
+      ],
+      "centroid_svg": [
+        573.8295378949472,
+        550.9057350643207
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "ULKOTILA",
+      "name": "Outdoor",
+      "category": "Space Outdoor",
+      "width_m": 2.96,
+      "depth_m": 1.7,
+      "area_m2": 5.04,
+      "polygon_svg": [
+        [
+          688.42,
+          341.08
+        ],
+        [
+          688.42,
+          170.58
+        ],
+        [
+          392.07,
+          170.58
+        ],
+        [
+          392.07,
+          341.08
+        ],
+        [
+          688.42,
+          341.08
+        ],
+        [
+          688.42,
+          341.08
+        ]
+      ],
+      "centroid_svg": [
+        540.245,
+        255.82999999999998
+      ],
+      "is_rectangular": true,
+      "outdoor": true
+    },
+    {
+      "code": "MH",
+      "name": "Bedroom",
+      "category": "Space Bedroom",
+      "width_m": 2.7,
+      "depth_m": 3.95,
+      "area_m2": 10.63,
+      "polygon_svg": [
+        [
+          773.22,
+          1148.66
+        ],
+        [
+          503.69,
+          1148.66
+        ],
+        [
+          503.69,
+          753.73
+        ],
+        [
+          773.22,
+          753.73
+        ]
+      ],
+      "centroid_svg": [
+        638.455,
+        951.195
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "ET",
+      "name": "Entrance hall",
+      "category": "Space Entry Lobby",
+      "width_m": 1.71,
+      "depth_m": 2.99,
+      "area_m2": 5.11,
+      "polygon_svg": [
+        [
+          491.69,
+          753.73
+        ],
+        [
+          491.69,
+          1052.41
+        ],
+        [
+          320.19,
+          1052.41
+        ],
+        [
+          320.19,
+          753.57
+        ]
+      ],
+      "centroid_svg": [
+        405.9323461418309,
+        903.0299964296872
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "VAR",
+      "name": "Storage",
+      "category": "Space Storage",
+      "width_m": 1.93,
+      "depth_m": 2.15,
+      "area_m2": 4.15,
+      "polygon_svg": [
+        [
+          324.79,
+          1551.54
+        ],
+        [
+          131.78,
+          1551.54
+        ],
+        [
+          131.78,
+          1336.38
+        ],
+        [
+          324.79,
+          1336.38
+        ]
+      ],
+      "centroid_svg": [
+        228.2850000000002,
+        1443.960000000001
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "KPH",
+      "name": "Bathroom",
+      "category": "Space Bath",
+      "width_m": 1.67,
+      "depth_m": 1.69,
+      "area_m2": 2.83,
+      "polygon_svg": [
+        [
+          310.19,
+          994.51
+        ],
+        [
+          142.79,
+          994.51
+        ],
+        [
+          142.79,
+          825.4
+        ],
+        [
+          310.19,
+          825.4
+        ]
+      ],
+      "centroid_svg": [
+        226.49000000000015,
+        909.9550000000006
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 1.67,
+      "depth_m": 1.44,
+      "area_m2": 2.41,
+      "polygon_svg": [
+        [
+          310.19,
+          1148.66
+        ],
+        [
+          142.79,
+          1148.66
+        ],
+        [
+          142.79,
+          1004.51
+        ],
+        [
+          310.19,
+          1004.51
+        ]
+      ],
+      "centroid_svg": [
+        226.4899999999998,
+        1076.5849999999998
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "TK",
+      "name": "Utility",
+      "category": "Space DraughtLobby",
+      "width_m": 1.71,
+      "depth_m": 0.86,
+      "area_m2": 1.48,
+      "polygon_svg": [
+        [
+          491.69,
+          1148.66
+        ],
+        [
+          320.19,
+          1148.66
+        ],
+        [
+          320.19,
+          1062.41
+        ],
+        [
+          491.69,
+          1062.41
+        ]
+      ],
+      "centroid_svg": [
+        405.93999999999994,
+        1105.5349999999999
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    }
+  ],
+  "warnings": [],
+  "outputs": [
+    {
+      "source_png": "F1_original.png",
+      "output_png": "F1_original_annotated.png",
+      "png_size": [
+        465,
+        874
+      ],
+      "fit_scale": 0.45019,
+      "fit_trustworthy": true
+    },
+    {
+      "source_png": "F1_scaled.png",
+      "output_png": "F1_scaled_annotated.png",
+      "png_size": [
+        871,
+        1638
+      ],
+      "fit_scale": 0.84631,
+      "fit_trustworthy": true
+    }
+  ],
+  "status": "ok"
+}

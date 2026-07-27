@@ -1,0 +1,305 @@
+{
+  "plan_id": "5657",
+  "px_per_m": 100.022,
+  "scale_source": "room_label_crosscheck",
+  "scale_confidence": 0.003,
+  "viewbox": [
+    1269.030029296875,
+    782.0699310302734
+  ],
+  "wall_bbox_svg": [
+    0.0,
+    0.0,
+    1269.03,
+    692.35
+  ],
+  "overall_width_m": 12.69,
+  "overall_depth_m": 6.92,
+  "internal_area_m2": 58.07,
+  "rooms": [
+    {
+      "code": "RUOK",
+      "name": "Dining",
+      "category": "Space Dining",
+      "width_m": 2.3,
+      "depth_m": 2.31,
+      "area_m2": 5.31,
+      "polygon_svg": [
+        [
+          418.26,
+          674.35
+        ],
+        [
+          188.24,
+          674.35
+        ],
+        [
+          188.24,
+          443.3
+        ],
+        [
+          418.26,
+          443.3
+        ]
+      ],
+      "centroid_svg": [
+        303.25000000000006,
+        558.8250000000002
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "K",
+      "name": "Kitchen",
+      "category": "Space Kitchen",
+      "width_m": 2.54,
+      "depth_m": 2.31,
+      "area_m2": 5.52,
+      "polygon_svg": [
+        [
+          671.87,
+          611.9
+        ],
+        [
+          618.22,
+          611.9
+        ],
+        [
+          618.22,
+          674.35
+        ],
+        [
+          418.26,
+          674.35
+        ],
+        [
+          418.26,
+          443.3
+        ],
+        [
+          671.87,
+          443.3
+        ]
+      ],
+      "centroid_svg": [
+        539.0016407744847,
+        553.7125656860277
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    },
+    {
+      "code": "ULKOTILA",
+      "name": "Outdoor",
+      "category": "Space Outdoor",
+      "width_m": 1.11,
+      "depth_m": 3.57,
+      "area_m2": 3.97,
+      "polygon_svg": [
+        [
+          169.24,
+          65.39
+        ],
+        [
+          58.0,
+          65.39
+        ],
+        [
+          58.0,
+          422.69
+        ],
+        [
+          169.24,
+          422.69
+        ],
+        [
+          169.24,
+          65.39
+        ]
+      ],
+      "centroid_svg": [
+        113.62,
+        244.04
+      ],
+      "is_rectangular": true,
+      "outdoor": true
+    },
+    {
+      "code": "OH",
+      "name": "Living room",
+      "category": "Space LivingRoom",
+      "width_m": 4.85,
+      "depth_m": 3.47,
+      "area_m2": 16.8,
+      "polygon_svg": [
+        [
+          672.85,
+          420.3
+        ],
+        [
+          188.24,
+          420.3
+        ],
+        [
+          188.24,
+          73.39
+        ],
+        [
+          672.85,
+          73.39
+        ]
+      ],
+      "centroid_svg": [
+        430.545,
+        246.84499999999997
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 1.58,
+      "depth_m": 5.71,
+      "area_m2": 8.25,
+      "polygon_svg": [
+        [
+          830.77,
+          674.35
+        ],
+        [
+          684.87,
+          674.35
+        ],
+        [
+          684.87,
+          420.3
+        ],
+        [
+          672.85,
+          420.3
+        ],
+        [
+          672.85,
+          305.81
+        ],
+        [
+          830.77,
+          305.81
+        ],
+        [
+          830.77,
+          292.81
+        ],
+        [
+          685.85,
+          292.81
+        ],
+        [
+          685.85,
+          103.62
+        ],
+        [
+          830.77,
+          103.62
+        ]
+      ],
+      "centroid_svg": [
+        756.6666119686445,
+        391.04126318152476
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    },
+    {
+      "code": "MH",
+      "name": "Bedroom",
+      "category": "Space Bedroom",
+      "width_m": 3.83,
+      "depth_m": 3.47,
+      "area_m2": 13.29,
+      "polygon_svg": [
+        [
+          1227.03,
+          420.3
+        ],
+        [
+          843.77,
+          420.3
+        ],
+        [
+          843.77,
+          73.39
+        ],
+        [
+          1227.03,
+          73.39
+        ]
+      ],
+      "centroid_svg": [
+        1035.4,
+        246.84500000000008
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "MH",
+      "name": "Bedroom",
+      "category": "Space Bedroom",
+      "width_m": 3.83,
+      "depth_m": 2.32,
+      "area_m2": 8.89,
+      "polygon_svg": [
+        [
+          1227.03,
+          674.35
+        ],
+        [
+          843.77,
+          674.35
+        ],
+        [
+          843.77,
+          442.3
+        ],
+        [
+          1227.03,
+          442.3
+        ]
+      ],
+      "centroid_svg": [
+        1035.3999999999994,
+        558.3249999999998
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    }
+  ],
+  "warnings": [],
+  "outputs": [
+    {
+      "source_png": "F1_original.png",
+      "output_png": "F1_original_annotated.png",
+      "png_size": [
+        1567,
+        901
+      ],
+      "fit_scale": 1.23401,
+      "fit_trustworthy": true
+    },
+    {
+      "source_png": "F1_scaled.png",
+      "output_png": "F1_scaled_annotated.png",
+      "png_size": [
+        1315,
+        756
+      ],
+      "fit_scale": 1.03544,
+      "fit_trustworthy": true
+    }
+  ],
+  "status": "ok"
+}

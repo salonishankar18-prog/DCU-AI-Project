@@ -1,0 +1,237 @@
+{
+  "plan_id": "4607",
+  "px_per_m": 99.956,
+  "scale_source": "room_label_crosscheck",
+  "scale_confidence": 0.0223,
+  "viewbox": [
+    641.6800231933594,
+    1026.9699516296387
+  ],
+  "wall_bbox_svg": [
+    0.0,
+    0.0,
+    641.68,
+    962.02
+  ],
+  "overall_width_m": 6.42,
+  "overall_depth_m": 9.62,
+  "internal_area_m2": 31.5,
+  "rooms": [
+    {
+      "code": "K",
+      "name": "Kitchen",
+      "category": "Space Kitchen",
+      "width_m": 4.77,
+      "depth_m": 1.46,
+      "area_m2": 4.07,
+      "polygon_svg": [
+        [
+          621.68,
+          739.27
+        ],
+        [
+          347.36,
+          739.27
+        ],
+        [
+          347.36,
+          679.4
+        ],
+        [
+          340.81,
+          679.4
+        ],
+        [
+          340.81,
+          594.16
+        ],
+        [
+          144.91,
+          594.16
+        ],
+        [
+          144.91,
+          593.54
+        ],
+        [
+          621.68,
+          593.54
+        ]
+      ],
+      "centroid_svg": [
+        481.8557481764375,
+        665.7742324565327
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    },
+    {
+      "code": "H",
+      "name": "H",
+      "category": "Space Room",
+      "width_m": 4.77,
+      "depth_m": 3.26,
+      "area_m2": 15.55,
+      "polygon_svg": [
+        [
+          621.68,
+          593.54
+        ],
+        [
+          144.91,
+          593.54
+        ],
+        [
+          144.91,
+          267.72
+        ],
+        [
+          621.68,
+          267.72
+        ]
+      ],
+      "centroid_svg": [
+        383.29499999999996,
+        430.63
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "ET",
+      "name": "Entrance hall",
+      "category": "Space Entry Lobby",
+      "width_m": 1.92,
+      "depth_m": 3.48,
+      "area_m2": 6.72,
+      "polygon_svg": [
+        [
+          340.81,
+          679.4
+        ],
+        [
+          337.07,
+          679.4
+        ],
+        [
+          337.07,
+          942.02
+        ],
+        [
+          144.91,
+          942.02
+        ],
+        [
+          144.91,
+          594.16
+        ],
+        [
+          340.81,
+          594.16
+        ]
+      ],
+      "centroid_svg": [
+        241.45492797363775,
+        767.4667259599966
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "PARVEKE",
+      "name": "Balcony",
+      "category": "Space Outdoor Balcony",
+      "width_m": 4.36,
+      "depth_m": 1.79,
+      "area_m2": 7.8,
+      "polygon_svg": [
+        [
+          567.9,
+          247.72
+        ],
+        [
+          131.91,
+          247.72
+        ],
+        [
+          131.91,
+          69.07
+        ],
+        [
+          567.9,
+          69.07
+        ]
+      ],
+      "centroid_svg": [
+        349.905,
+        158.39499999999998
+      ],
+      "is_rectangular": true,
+      "outdoor": true
+    },
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 2.74,
+      "depth_m": 1.94,
+      "area_m2": 5.16,
+      "polygon_svg": [
+        [
+          621.68,
+          942.02
+        ],
+        [
+          347.36,
+          942.02
+        ],
+        [
+          347.36,
+          772.39
+        ],
+        [
+          413.07,
+          772.39
+        ],
+        [
+          413.07,
+          748.27
+        ],
+        [
+          621.68,
+          748.27
+        ]
+      ],
+      "centroid_svg": [
+        487.72599216860004,
+        847.7519337594536
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    }
+  ],
+  "warnings": [],
+  "outputs": [
+    {
+      "source_png": "F1_original.png",
+      "output_png": "F1_original_annotated.png",
+      "png_size": [
+        360,
+        529
+      ],
+      "fit_scale": 0.4083,
+      "fit_trustworthy": true
+    },
+    {
+      "source_png": "F1_scaled.png",
+      "output_png": "F1_scaled_annotated.png",
+      "png_size": [
+        714,
+        1050
+      ],
+      "fit_scale": 0.91946,
+      "fit_trustworthy": true
+    }
+  ],
+  "status": "ok"
+}

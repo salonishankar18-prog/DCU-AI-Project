@@ -1,0 +1,245 @@
+{
+  "plan_id": "4026",
+  "px_per_m": 100.058,
+  "scale_source": "room_label_crosscheck",
+  "scale_confidence": 0.0044,
+  "viewbox": [
+    782.8300094604492,
+    1014.2700424194336
+  ],
+  "wall_bbox_svg": [
+    -0.38,
+    -4.58,
+    782.83,
+    938.2
+  ],
+  "overall_width_m": 7.83,
+  "overall_depth_m": 9.42,
+  "internal_area_m2": 51.87,
+  "rooms": [
+    {
+      "code": "ET",
+      "name": "Entrance hall",
+      "category": "Space Entry Lobby",
+      "width_m": 2.95,
+      "depth_m": 2.1,
+      "area_m2": 6.19,
+      "polygon_svg": [
+        [
+          376.09,
+          706.86
+        ],
+        [
+          81.42,
+          706.41
+        ],
+        [
+          81.44,
+          916.78
+        ],
+        [
+          376.09,
+          917.09
+        ],
+        [
+          376.09,
+          706.86
+        ],
+        [
+          376.09,
+          706.86
+        ],
+        [
+          376.09,
+          706.86
+        ],
+        [
+          376.09,
+          706.86
+        ]
+      ],
+      "centroid_svg": [
+        228.74365630637868,
+        811.7837898122003
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "OH",
+      "name": "Living room",
+      "category": "Space LivingRoom",
+      "width_m": 4.76,
+      "depth_m": 6.0,
+      "area_m2": 28.54,
+      "polygon_svg": [
+        [
+          759.83,
+          706.86
+        ],
+        [
+          283.76,
+          706.86
+        ],
+        [
+          283.76,
+          112.23
+        ],
+        [
+          282.28,
+          106.79
+        ],
+        [
+          759.83,
+          106.79
+        ]
+      ],
+      "centroid_svg": [
+        521.7916388202125,
+        406.82079766217186
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "PSH",
+      "name": "Shower room",
+      "category": "Space Bath Shower",
+      "width_m": 1.91,
+      "depth_m": 2.62,
+      "area_m2": 5.0,
+      "polygon_svg": [
+        [
+          272.42,
+          706.41
+        ],
+        [
+          81.42,
+          706.41
+        ],
+        [
+          81.42,
+          444.38
+        ],
+        [
+          272.42,
+          444.38
+        ]
+      ],
+      "centroid_svg": [
+        176.92000000000002,
+        575.395
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "KK",
+      "name": "KK",
+      "category": "Space Kitchen Kitchenette",
+      "width_m": 2.03,
+      "depth_m": 2.01,
+      "area_m2": 4.08,
+      "polygon_svg": [
+        [
+          280.7,
+          106.91
+        ],
+        [
+          80.48,
+          106.79
+        ],
+        [
+          80.48,
+          308.14
+        ],
+        [
+          283.09,
+          308.14
+        ],
+        [
+          283.69,
+          106.83
+        ],
+        [
+          277.75,
+          106.83
+        ],
+        [
+          280.7,
+          106.91
+        ]
+      ],
+      "centroid_svg": [
+        181.925673357842,
+        207.44496326958523
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 3.84,
+      "depth_m": 2.1,
+      "area_m2": 8.07,
+      "polygon_svg": [
+        [
+          759.83,
+          917.2
+        ],
+        [
+          376.09,
+          917.09
+        ],
+        [
+          376.09,
+          707.94
+        ],
+        [
+          283.76,
+          707.94
+        ],
+        [
+          283.76,
+          706.86
+        ],
+        [
+          759.83,
+          706.86
+        ]
+      ],
+      "centroid_svg": [
+        567.6829248530707,
+        811.8734021833521
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    }
+  ],
+  "warnings": [],
+  "outputs": [
+    {
+      "source_png": "F1_original.png",
+      "output_png": "F1_original_annotated.png",
+      "png_size": [
+        619,
+        752
+      ],
+      "fit_scale": 0.66266,
+      "fit_trustworthy": true
+    },
+    {
+      "source_png": "F1_scaled.png",
+      "output_png": "F1_scaled_annotated.png",
+      "png_size": [
+        863,
+        1048
+      ],
+      "fit_scale": 0.9244,
+      "fit_trustworthy": true
+    }
+  ],
+  "status": "ok"
+}

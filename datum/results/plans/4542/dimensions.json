@@ -1,0 +1,193 @@
+{
+  "plan_id": "4542",
+  "px_per_m": 100.007,
+  "scale_source": "room_label_crosscheck",
+  "scale_confidence": 0.004,
+  "viewbox": [
+    829.5800704956055,
+    702.2199783325195
+  ],
+  "wall_bbox_svg": [
+    0.0,
+    0.0,
+    829.58,
+    608.55
+  ],
+  "overall_width_m": 8.3,
+  "overall_depth_m": 6.09,
+  "internal_area_m2": 24.94,
+  "rooms": [
+    {
+      "code": "K",
+      "name": "Kitchen",
+      "category": "Space Kitchen",
+      "width_m": 2.16,
+      "depth_m": 3.04,
+      "area_m2": 6.49,
+      "polygon_svg": [
+        [
+          271.99,
+          427.0
+        ],
+        [
+          116.35,
+          427.0
+        ],
+        [
+          116.35,
+          415.97
+        ],
+        [
+          56.32,
+          415.97
+        ],
+        [
+          56.32,
+          122.98
+        ],
+        [
+          271.99,
+          122.98
+        ]
+      ],
+      "centroid_svg": [
+        164.94887322890906,
+        273.49554537819296
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "OH",
+      "name": "Living room",
+      "category": "Space LivingRoom",
+      "width_m": 3.2,
+      "depth_m": 3.04,
+      "area_m2": 9.73,
+      "polygon_svg": [
+        [
+          592.13,
+          426.97
+        ],
+        [
+          272.04,
+          426.97
+        ],
+        [
+          271.99,
+          427.0
+        ],
+        [
+          271.99,
+          122.98
+        ],
+        [
+          592.13,
+          122.98
+        ]
+      ],
+      "centroid_svg": [
+        432.05999876653533,
+        274.9750011714396
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "ET",
+      "name": "Entrance hall",
+      "category": "Space Entry Lobby",
+      "width_m": 2.16,
+      "depth_m": 1.63,
+      "area_m2": 3.26,
+      "polygon_svg": [
+        [
+          272.04,
+          589.55
+        ],
+        [
+          56.32,
+          589.55
+        ],
+        [
+          56.32,
+          467.49
+        ],
+        [
+          116.35,
+          467.49
+        ],
+        [
+          116.35,
+          427.0
+        ],
+        [
+          272.04,
+          427.0
+        ]
+      ],
+      "centroid_svg": [
+        169.97785834464648,
+        512.8204851920326
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    },
+    {
+      "code": "PH",
+      "name": "PH",
+      "category": "Space Bath Shower",
+      "width_m": 1.79,
+      "depth_m": 3.04,
+      "area_m2": 5.45,
+      "polygon_svg": [
+        [
+          782.58,
+          426.97
+        ],
+        [
+          603.13,
+          426.97
+        ],
+        [
+          603.13,
+          122.98
+        ],
+        [
+          782.58,
+          122.98
+        ]
+      ],
+      "centroid_svg": [
+        692.855,
+        274.975
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    }
+  ],
+  "warnings": [],
+  "outputs": [
+    {
+      "source_png": "F1_original.png",
+      "output_png": "F1_original_annotated.png",
+      "png_size": [
+        515,
+        428
+      ],
+      "fit_scale": 0.56414,
+      "fit_trustworthy": false
+    },
+    {
+      "source_png": "F1_scaled.png",
+      "output_png": "F1_scaled_annotated.png",
+      "png_size": [
+        872,
+        725
+      ],
+      "fit_scale": 0.95591,
+      "fit_trustworthy": true
+    }
+  ],
+  "status": "ok"
+}

@@ -1,0 +1,407 @@
+{
+  "plan_id": "5084",
+  "px_per_m": 100.0,
+  "scale_source": "convention_fallback_100",
+  "scale_confidence": 1.0,
+  "viewbox": [
+    929.4546203613281,
+    1310.469970703125
+  ],
+  "wall_bbox_svg": [
+    0.0,
+    0.0,
+    929.45,
+    1235.34
+  ],
+  "overall_width_m": 9.29,
+  "overall_depth_m": 12.35,
+  "internal_area_m2": 83.97,
+  "rooms": [
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 3.71,
+      "depth_m": 10.29,
+      "area_m2": 27.84,
+      "polygon_svg": [
+        [
+          481.22,
+          1209.34
+        ],
+        [
+          306.39,
+          1209.34
+        ],
+        [
+          306.39,
+          1078.53
+        ],
+        [
+          335.9,
+          1078.53
+        ],
+        [
+          335.9,
+          737.43
+        ],
+        [
+          110.59,
+          737.43
+        ],
+        [
+          112.59,
+          180.15
+        ],
+        [
+          481.22,
+          180.15
+        ]
+      ],
+      "centroid_svg": [
+        324.37215029981985,
+        595.2229966804429
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    },
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 4.08,
+      "depth_m": 3.61,
+      "area_m2": 13.75,
+      "polygon_svg": [
+        [
+          903.45,
+          375.9
+        ],
+        [
+          731.47,
+          375.9
+        ],
+        [
+          731.47,
+          433.95
+        ],
+        [
+          495.22,
+          433.95
+        ],
+        [
+          495.22,
+          72.76
+        ],
+        [
+          903.45,
+          72.76
+        ]
+      ],
+      "centroid_svg": [
+        690.7561442568945,
+        242.34719331231724
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    },
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 4.08,
+      "depth_m": 3.05,
+      "area_m2": 10.94,
+      "polygon_svg": [
+        [
+          829.78,
+          446.95
+        ],
+        [
+          842.78,
+          446.95
+        ],
+        [
+          842.78,
+          388.9
+        ],
+        [
+          903.45,
+          388.9
+        ],
+        [
+          903.45,
+          694.26
+        ],
+        [
+          495.22,
+          694.26
+        ],
+        [
+          495.22,
+          446.95
+        ],
+        [
+          744.47,
+          446.95
+        ],
+        [
+          744.47,
+          388.9
+        ],
+        [
+          829.78,
+          388.9
+        ]
+      ],
+      "centroid_svg": [
+        708.9005560866217,
+        558.7820066846706
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    },
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 4.08,
+      "depth_m": 2.81,
+      "area_m2": 10.22,
+      "polygon_svg": [
+        [
+          903.45,
+          987.77
+        ],
+        [
+          687.7,
+          987.77
+        ],
+        [
+          687.7,
+          923.77
+        ],
+        [
+          495.22,
+          923.77
+        ],
+        [
+          495.22,
+          707.26
+        ],
+        [
+          903.45,
+          707.26
+        ]
+      ],
+      "centroid_svg": [
+        712.338537541676,
+        834.465656254237
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    },
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 4.08,
+      "depth_m": 2.73,
+      "area_m2": 9.16,
+      "polygon_svg": [
+        [
+          596.81,
+          1000.77
+        ],
+        [
+          903.45,
+          1000.77
+        ],
+        [
+          903.45,
+          1209.34
+        ],
+        [
+          495.22,
+          1209.34
+        ],
+        [
+          495.22,
+          936.77
+        ],
+        [
+          596.81,
+          936.77
+        ]
+      ],
+      "centroid_svg": [
+        688.4578566782667,
+        1095.3863887450923
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    },
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 3.69,
+      "depth_m": 0.94,
+      "area_m2": 3.48,
+      "polygon_svg": [
+        [
+          481.22,
+          167.15
+        ],
+        [
+          112.59,
+          167.15
+        ],
+        [
+          112.46,
+          72.76
+        ],
+        [
+          481.22,
+          72.76
+        ]
+      ],
+      "centroid_svg": [
+        296.87249809011064,
+        119.95222654678442
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 2.12,
+      "depth_m": 2.26,
+      "area_m2": 4.37,
+      "polygon_svg": [
+        [
+          322.9,
+          1065.53
+        ],
+        [
+          293.39,
+          1065.53
+        ],
+        [
+          293.39,
+          1209.34
+        ],
+        [
+          110.59,
+          1209.34
+        ],
+        [
+          110.59,
+          983.55
+        ],
+        [
+          322.9,
+          983.55
+        ]
+      ],
+      "centroid_svg": [
+        207.86759062507346,
+        1092.4637635636952
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    },
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 2.12,
+      "depth_m": 1.05,
+      "area_m2": 2.22,
+      "polygon_svg": [
+        [
+          322.9,
+          855.0
+        ],
+        [
+          110.59,
+          855.0
+        ],
+        [
+          110.59,
+          750.43
+        ],
+        [
+          322.9,
+          750.43
+        ]
+      ],
+      "centroid_svg": [
+        216.745,
+        802.7149999999997
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 1.93,
+      "depth_m": 1.03,
+      "area_m2": 1.98,
+      "polygon_svg": [
+        [
+          322.9,
+          970.55
+        ],
+        [
+          129.59,
+          970.55
+        ],
+        [
+          129.59,
+          868.0
+        ],
+        [
+          322.9,
+          868.0
+        ]
+      ],
+      "centroid_svg": [
+        226.24499999999998,
+        919.2749999999992
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    }
+  ],
+  "warnings": [
+    "no usable room labels \u2014 assumed 100 px/m; treat as estimated"
+  ],
+  "outputs": [
+    {
+      "source_png": "F1_original.png",
+      "output_png": "F1_original_annotated.png",
+      "png_size": [
+        563,
+        743
+      ],
+      "fit_scale": 0.43144,
+      "fit_trustworthy": true
+    },
+    {
+      "source_png": "F1_scaled.png",
+      "output_png": "F1_scaled_annotated.png",
+      "png_size": [
+        1032,
+        1362
+      ],
+      "fit_scale": 0.79187,
+      "fit_trustworthy": true
+    }
+  ],
+  "status": "estimated"
+}

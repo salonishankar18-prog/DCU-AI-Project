@@ -1,0 +1,263 @@
+{
+  "plan_id": "4586",
+  "px_per_m": 100.0,
+  "scale_source": "convention_fallback_100",
+  "scale_confidence": 1.0,
+  "viewbox": [
+    828.5700912475586,
+    927.4799690246582
+  ],
+  "wall_bbox_svg": [
+    0.0,
+    -122.19,
+    828.57,
+    837.31
+  ],
+  "overall_width_m": 8.29,
+  "overall_depth_m": 9.6,
+  "internal_area_m2": 38.83,
+  "rooms": [
+    {
+      "code": "ET",
+      "name": "Entrance hall",
+      "category": "Space Entry Lobby",
+      "width_m": 3.59,
+      "depth_m": 1.45,
+      "area_m2": 3.76,
+      "polygon_svg": [
+        [
+          809.34,
+          823.05
+        ],
+        [
+          542.33,
+          823.05
+        ],
+        [
+          542.33,
+          684.33
+        ],
+        [
+          718.61,
+          684.33
+        ],
+        [
+          718.61,
+          678.33
+        ],
+        [
+          450.13,
+          678.33
+        ],
+        [
+          450.13,
+          678.21
+        ],
+        [
+          809.34,
+          678.21
+        ]
+      ],
+      "centroid_svg": [
+        677.0573766466864,
+        752.5567126371357
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    },
+    {
+      "code": "TUPAK",
+      "name": "TUPAK",
+      "category": "Space Kitchen Open",
+      "width_m": 3.59,
+      "depth_m": 4.17,
+      "area_m2": 14.97,
+      "polygon_svg": [
+        [
+          809.34,
+          678.21
+        ],
+        [
+          450.13,
+          678.21
+        ],
+        [
+          450.13,
+          261.38
+        ],
+        [
+          809.34,
+          261.38
+        ]
+      ],
+      "centroid_svg": [
+        629.735,
+        469.7949999999999
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "PARVEKE",
+      "name": "Balcony",
+      "category": "Space Outdoor Balcony",
+      "width_m": 3.56,
+      "depth_m": 1.78,
+      "area_m2": 6.34,
+      "polygon_svg": [
+        [
+          88.09,
+          54.51
+        ],
+        [
+          88.09,
+          232.7
+        ],
+        [
+          444.16,
+          232.7
+        ],
+        [
+          444.16,
+          54.51
+        ],
+        [
+          88.09,
+          54.51
+        ],
+        [
+          88.09,
+          54.51
+        ]
+      ],
+      "centroid_svg": [
+        266.125,
+        143.60499999999996
+      ],
+      "is_rectangular": true,
+      "outdoor": true
+    },
+    {
+      "code": "AH",
+      "name": "AH",
+      "category": "Space Room",
+      "width_m": 3.54,
+      "depth_m": 5.45,
+      "area_m2": 15.08,
+      "polygon_svg": [
+        [
+          435.13,
+          617.04
+        ],
+        [
+          88.09,
+          617.04
+        ],
+        [
+          88.09,
+          636.37
+        ],
+        [
+          234.76,
+          636.37
+        ],
+        [
+          234.76,
+          806.72
+        ],
+        [
+          88.09,
+          806.72
+        ],
+        [
+          88.09,
+          617.04
+        ],
+        [
+          81.29,
+          617.04
+        ],
+        [
+          81.29,
+          261.38
+        ],
+        [
+          435.13,
+          261.38
+        ]
+      ],
+      "centroid_svg": [
+        242.17761682077003,
+        485.9786408524863
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    },
+    {
+      "code": "PH",
+      "name": "PH",
+      "category": "Space Bath Shower",
+      "width_m": 2.82,
+      "depth_m": 1.98,
+      "area_m2": 5.01,
+      "polygon_svg": [
+        [
+          440.13,
+          684.33
+        ],
+        [
+          536.33,
+          684.33
+        ],
+        [
+          536.33,
+          823.05
+        ],
+        [
+          254.66,
+          823.05
+        ],
+        [
+          254.66,
+          625.04
+        ],
+        [
+          440.13,
+          625.04
+        ]
+      ],
+      "centroid_svg": [
+        384.9310940319076,
+        731.9461432355303
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    }
+  ],
+  "warnings": [
+    "no usable room labels \u2014 assumed 100 px/m; treat as estimated"
+  ],
+  "outputs": [
+    {
+      "source_png": "F1_original.png",
+      "output_png": "F1_original_annotated.png",
+      "png_size": [
+        494,
+        543
+      ],
+      "fit_scale": 0.52862,
+      "fit_trustworthy": false
+    },
+    {
+      "source_png": "F1_scaled.png",
+      "output_png": "F1_scaled_annotated.png",
+      "png_size": [
+        863,
+        948
+      ],
+      "fit_scale": 0.92448,
+      "fit_trustworthy": false
+    }
+  ],
+  "status": "estimated"
+}

@@ -1,0 +1,257 @@
+{
+  "plan_id": "5703",
+  "px_per_m": 100.152,
+  "scale_source": "room_label_crosscheck",
+  "scale_confidence": 0.005,
+  "viewbox": [
+    548.739990234375,
+    1285.4200820922852
+  ],
+  "wall_bbox_svg": [
+    0.0,
+    0.0,
+    548.74,
+    1201.0
+  ],
+  "overall_width_m": 5.48,
+  "overall_depth_m": 11.99,
+  "internal_area_m2": 37.37,
+  "rooms": [
+    {
+      "code": "UNDEFINED",
+      "name": "UNDEFINED",
+      "category": "Space Undefined",
+      "width_m": 1.99,
+      "depth_m": 3.34,
+      "area_m2": 6.64,
+      "polygon_svg": [
+        [
+          283.92,
+          884.36
+        ],
+        [
+          85.15,
+          884.36
+        ],
+        [
+          85.15,
+          549.88
+        ],
+        [
+          284.87,
+          549.88
+        ]
+      ],
+      "centroid_svg": [
+        184.77268873330158,
+        716.9870999690501
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "H",
+      "name": "H",
+      "category": "Space Room",
+      "width_m": 4.41,
+      "depth_m": 5.72,
+      "area_m2": 16.12,
+      "polygon_svg": [
+        [
+          526.47,
+          784.07
+        ],
+        [
+          284.08,
+          784.07
+        ],
+        [
+          284.08,
+          884.36
+        ],
+        [
+          283.92,
+          884.36
+        ],
+        [
+          284.87,
+          549.88
+        ],
+        [
+          85.15,
+          549.88
+        ],
+        [
+          84.3,
+          312.13
+        ],
+        [
+          526.47,
+          312.13
+        ]
+      ],
+      "centroid_svg": [
+        340.6066934636555,
+        513.6943845623076
+      ],
+      "is_rectangular": false,
+      "outdoor": false
+    },
+    {
+      "code": "ALKOVI",
+      "name": "ALKOVI",
+      "category": "Space Alcove",
+      "width_m": 2.42,
+      "depth_m": 1.28,
+      "area_m2": 3.1,
+      "polygon_svg": [
+        [
+          526.47,
+          912.35
+        ],
+        [
+          284.08,
+          912.35
+        ],
+        [
+          284.08,
+          784.07
+        ],
+        [
+          526.47,
+          784.07
+        ]
+      ],
+      "centroid_svg": [
+        405.2750000000001,
+        848.21
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "ET",
+      "name": "Entrance hall",
+      "category": "Space Entry Lobby",
+      "width_m": 1.99,
+      "depth_m": 2.96,
+      "area_m2": 5.86,
+      "polygon_svg": [
+        [
+          284.08,
+          1180.0
+        ],
+        [
+          85.15,
+          1180.0
+        ],
+        [
+          85.15,
+          884.36
+        ],
+        [
+          284.08,
+          884.36
+        ]
+      ],
+      "centroid_svg": [
+        184.61499999999998,
+        1032.1799999999998
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    },
+    {
+      "code": "LASITETTU PARVEKE",
+      "name": "LASITETTU PARVEKE",
+      "category": "Space Outdoor Balcony Glazed",
+      "width_m": 4.41,
+      "depth_m": 2.31,
+      "area_m2": 10.15,
+      "polygon_svg": [
+        [
+          527.47,
+          289.11
+        ],
+        [
+          548.47,
+          289.13
+        ],
+        [
+          86.28,
+          289.13
+        ],
+        [
+          86.28,
+          58.38
+        ],
+        [
+          527.71,
+          58.38
+        ]
+      ],
+      "centroid_svg": [
+        306.93546946386124,
+        173.7447795273102
+      ],
+      "is_rectangular": false,
+      "outdoor": true
+    },
+    {
+      "code": "KPH",
+      "name": "Bathroom",
+      "category": "Space Bath",
+      "width_m": 2.2,
+      "depth_m": 2.57,
+      "area_m2": 5.64,
+      "polygon_svg": [
+        [
+          515.47,
+          1180.0
+        ],
+        [
+          295.08,
+          1180.0
+        ],
+        [
+          295.08,
+          923.35
+        ],
+        [
+          515.47,
+          923.35
+        ]
+      ],
+      "centroid_svg": [
+        405.27499999999986,
+        1051.675
+      ],
+      "is_rectangular": true,
+      "outdoor": false
+    }
+  ],
+  "warnings": [],
+  "outputs": [
+    {
+      "source_png": "F1_original.png",
+      "output_png": "F1_original_annotated.png",
+      "png_size": [
+        449,
+        970
+      ],
+      "fit_scale": 0.72894,
+      "fit_trustworthy": true
+    },
+    {
+      "source_png": "F1_scaled.png",
+      "output_png": "F1_scaled_annotated.png",
+      "png_size": [
+        607,
+        1312
+      ],
+      "fit_scale": 0.98589,
+      "fit_trustworthy": true
+    }
+  ],
+  "status": "ok"
+}
